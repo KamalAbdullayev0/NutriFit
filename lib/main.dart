@@ -1,17 +1,10 @@
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:spotify/core/configs/theme/app_theme.dart';
-import 'package:spotify/firebase_options.dart';
-import 'package:spotify/presentation/splash/pages/splash.dart';
-import 'package:spotify/service_locator.dart';
+import 'package:nutri_fit/core/theme/app_theme.dart';
+import 'package:nutri_fit/presentation/splash/pages/splash.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  await initializeDependencies();
+  
   runApp(const MyApp());
 }
 

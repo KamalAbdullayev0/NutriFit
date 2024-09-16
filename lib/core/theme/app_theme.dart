@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'package:nutri_fit/core/theme/app_colors.dart';
 
 class AppTheme {
   static final lightTheme = ThemeData(
-    primaryColor: AppColors.primary,
-    scaffoldBackgroundColor: AppColors.lightBackground,
+    // primaryColor: AppColors.primary,
+    // scaffoldBackgroundColor: AppColors.lightBackground,
+    scaffoldBackgroundColor: AppColors.background,
     brightness: Brightness.light,
     fontFamily: 'Satoshi',
     inputDecorationTheme: InputDecorationTheme(
@@ -32,22 +33,22 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.primary,
+        // backgroundColor: AppColors.primary,
         elevation: 0,
         textStyle: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.bold,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(15),
         ),
       ),
     ),
   );
 
   static final darkTheme = ThemeData(
-    primaryColor: AppColors.primary,
-    scaffoldBackgroundColor: AppColors.darkBackground,
+    // primaryColor: AppColors.primary,
+    // scaffoldBackgroundColor: AppColors.darkBackground,
     brightness: Brightness.dark,
     fontFamily: 'Satoshi',
     inputDecorationTheme: InputDecorationTheme(
@@ -75,7 +76,7 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.primary,
+        // backgroundColor: AppColors.primary,
         elevation: 0,
         textStyle: const TextStyle(
           fontSize: 16,
