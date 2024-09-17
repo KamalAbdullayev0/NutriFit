@@ -92,7 +92,7 @@ class _GetStartedState extends State<GetStarted> {
                   onPressed: () {},
                   title: 'SIGN IN',
                   height: 65,
-                  backgroundColor: AppColors.orange,
+                  backgroundColor: AppColors.green,
                 ),
                 const SizedBox(height: 21),
                 BasicAppButton(
