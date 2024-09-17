@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nutri_fit/presentation/intro/pages/get_started.dart';
+import 'package:nutri_fit/presentation/intro_sign/pages/get_started.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -27,8 +27,7 @@ class _SplashPageState extends State<SplashPage> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => 
-         GetStarted(),
+        builder: (context) => GetStarted(),
       ),
     );
   }
