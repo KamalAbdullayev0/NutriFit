@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nutri_fit/common/widgets/button/basic_app_button.dart';
-import 'package:nutri_fit/core/theme/app_colors.dart';
+import 'package:nutri_fit/core/configs/theme/app_colors.dart';
+import 'package:nutri_fit/presentation/auth/pages/sigin.dart';
+import 'package:nutri_fit/presentation/auth/pages/signup.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class GetStarted extends StatefulWidget {
@@ -70,33 +72,31 @@ class _GetStartedState extends State<GetStarted> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                // const Text(
-                //   'Active Life',
-                //   style: TextStyle(
-                //     color: Colors.white,
-                //     fontSize: 10,
-                //     fontWeight: FontWeight.bold,
-                //   ),
-                // ),
-                // const Text(
-                //   'Join our family to discover diet lists and exercise types',
-                //   style: TextStyle(
-                //     color: Colors.white,
-                //     fontSize: 10,
-                //     fontWeight: FontWeight.bold,
-                //   ),
-                // ),
+
                 const SizedBox(height: 16),
-                // Кнопки SIGN IN и LOGIN
                 BasicAppButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => SigunPage(),
+                      ),
+                    );
+                  },
                   title: 'SIGN IN',
                   height: 65,
                   backgroundColor: AppColors.green,
                 ),
                 const SizedBox(height: 21),
                 BasicAppButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => SigninPage(),
+                      ),
+                    );
+                  },
                   title: 'LOGIN',
                   height: 65,
                   backgroundColor: AppColors.green,
