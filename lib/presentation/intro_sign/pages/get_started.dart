@@ -42,17 +42,17 @@ class _GetStartedState extends State<GetStarted> {
                 ),
                 const Spacer(),
                 // PageView и индикатор
-                Container(
+                SizedBox(
                   height: 100,
                   width: 100,
                   child: PageView(
                     controller: widget
                         ._controller, // Здесь исправлено на widget._controller
                     children: [
-                      Container(
+                      const SizedBox(
                           height: 50,
                           width: 50,
-                          child: const Center(child: Text('Page 1'))),
+                          child: Center(child: Text('Page 1'))),
                       Container(child: const Center(child: Text('Page 1'))),
                       SizedBox(
                           child: Container(
@@ -85,7 +85,7 @@ class _GetStartedState extends State<GetStarted> {
                   },
                   title: 'SIGN IN',
                   height: 65,
-                  backgroundColor: AppColors.green,
+                  backgroundColor: AppColors.orange,
                 ),
                 const SizedBox(height: 21),
                 BasicAppButton(
