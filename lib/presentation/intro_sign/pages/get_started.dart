@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nutri_fit/common/widgets/button/basic_app_button.dart';
+import 'package:nutri_fit/core/configs/assets/app_images.dart';
 import 'package:nutri_fit/core/configs/theme/app_colors.dart';
 import 'package:nutri_fit/presentation/auth/pages/sigin.dart';
 import 'package:nutri_fit/presentation/auth/pages/signup.dart';
@@ -23,23 +24,34 @@ class _GetStartedState extends State<GetStarted> {
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
             child: Column(
               children: [
-                const SizedBox(height: 180),
-                const Text(
-                  'NutriFit',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
+                SizedBox(
+                  height: 70,
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    height: 160,
+                    width: 160,
+                    child: Image.asset(
+                      AppImages.logo,
+                    ),
                   ),
                 ),
-                const Text(
-                  'Healthy life with NutriFit',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                SizedBox(
+                  height: 10,
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    AppImages.yazi,
+                    height: 60,
+                    width: 300,
                   ),
                 ),
+                SizedBox(
+                  height: 80,
+                ),
+
                 const Spacer(),
                 // PageView и индикатор
                 SizedBox(
