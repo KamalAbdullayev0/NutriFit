@@ -5,7 +5,11 @@ import 'package:nutri_fit/common/widgets/button/basic_app_button.dart';
 import 'package:nutri_fit/core/configs/assets/app_images.dart';
 import 'package:nutri_fit/core/configs/assets/app_vectors.dart';
 import 'package:nutri_fit/core/configs/theme/app_colors.dart';
-import 'package:nutri_fit/presentation/auth/pages/login.dart';
+import 'package:nutri_fit/data/models/auth/create_user_req.dart';
+import 'package:nutri_fit/domain/usecases/auth/signup.dart';
+
+import 'package:nutri_fit/presentation/home/pages/home.dart';
+import 'package:nutri_fit/service_locator.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -87,6 +91,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 _passwordField(context),
                 const SizedBox(height: 15),
                 BasicAppButton(
+                    backgroundColor: AppColors.green,
+                    height: 65,
                     onPressed: () async {
                       var result = await sl<SignupUseCase>().call(
                         params: CreateUserReq(
@@ -113,7 +119,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         },
                       );
                     },
-                    title: 'Creat Account'),
+                    title: 'Register'),
                 SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,

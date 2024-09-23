@@ -5,7 +5,11 @@ import 'package:nutri_fit/common/widgets/button/basic_app_button.dart';
 import 'package:nutri_fit/core/configs/assets/app_images.dart';
 import 'package:nutri_fit/core/configs/assets/app_vectors.dart';
 import 'package:nutri_fit/core/configs/theme/app_colors.dart';
+import 'package:nutri_fit/data/models/auth/signin_user_req.dart';
+import 'package:nutri_fit/domain/usecases/auth/signin.dart';
 import 'package:nutri_fit/presentation/auth/pages/register.dart';
+import 'package:nutri_fit/presentation/home/pages/home.dart';
+import 'package:nutri_fit/service_locator.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -85,11 +89,34 @@ class _LoginPageState extends State<LoginPage> {
                 _passwordField(),
                 const SizedBox(height: 15),
                 BasicAppButton(
-                  onPressed: () {},
-                  title: 'LOGIN',
-                  height: 65,
-                  backgroundColor: AppColors.green,
-                ),
+                    backgroundColor: AppColors.green,
+                    height: 65,
+                    onPressed: () async {
+                      var result = await sl<SigninUseCase>().call(
+                        params: SigninUserReq(
+                          email: _email.text.toString(),
+                          password: _password.text.toString(),
+                        ),
+                      );
+                      result.fold(
+                        (l) {
+                          var snackBar = SnackBar(
+                            content: Text(l),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        },
+                        (r) {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    const HomePage(),
+                              ),
+                              (route) => false);
+                        },
+                      );
+                    },
+                    title: 'Sign In'),
                 SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
