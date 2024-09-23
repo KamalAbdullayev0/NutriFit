@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nutri_fit/common/widgets/button/basic_app_button.dart';
 import 'package:nutri_fit/core/configs/assets/app_images.dart';
 import 'package:nutri_fit/core/configs/theme/app_colors.dart';
-import 'package:nutri_fit/presentation/auth/pages/sigin.dart';
-import 'package:nutri_fit/presentation/auth/pages/signup.dart';
+import 'package:nutri_fit/presentation/auth/pages/login.dart';
+import 'package:nutri_fit/presentation/auth/pages/register.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class GetStarted extends StatefulWidget {
@@ -91,11 +91,11 @@ class _GetStartedState extends State<GetStarted> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (BuildContext context) => SigunPage(),
+                        builder: (BuildContext context) => RegisterPage(),
                       ),
                     );
                   },
-                  title: 'SIGN IN',
+                  title: 'Register',
                   height: 65,
                   backgroundColor: AppColors.orange,
                 ),
@@ -105,11 +105,11 @@ class _GetStartedState extends State<GetStarted> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (BuildContext context) => SigninPage(),
+                        builder: (BuildContext context) => LoginPage(),
                       ),
                     );
                   },
-                  title: 'LOGIN',
+                  title: 'Login',
                   height: 65,
                   backgroundColor: AppColors.green,
                 ),

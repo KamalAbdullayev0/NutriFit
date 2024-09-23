@@ -22,7 +22,8 @@ class BasicAppButton extends StatelessWidget {
         backgroundColor: backgroundColor, // Используем переданный цвет
       ),
       onPressed: onPressed,
-      child: Text(title, style: const TextStyle(color: Colors.white)),
+      child: Text(title,
+          style: const TextStyle(color: Colors.white, fontSize: 18)),
     );
   }
 }

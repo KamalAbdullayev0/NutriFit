@@ -10,21 +10,29 @@ class AppTheme {
     fontFamily: 'Satoshi',
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: Colors.transparent,
+      fillColor: Colors.grey.shade200,
       hintStyle: const TextStyle(
         color: Color(0xff383838),
         fontWeight: FontWeight.w500,
+        fontSize: 19,
       ),
-      contentPadding: const EdgeInsets.all(30),
+      contentPadding: const EdgeInsets.all(20),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(14),
         borderSide: const BorderSide(
           color: Colors.white,
           width: 0.4,
         ),
       ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(
+          color: Colors.green,
+          width: 2.5,
+        ),
+      ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(10),
         borderSide: const BorderSide(
           color: Colors.black,
           width: 0.4,
