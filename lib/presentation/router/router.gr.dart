@@ -12,10 +12,14 @@ import 'package:auto_route/auto_route.dart' as _i10;
 import 'package:nutri_fit/presentation/auth/pages/login.dart' as _i5;
 import 'package:nutri_fit/presentation/auth/pages/register.dart' as _i7;
 import 'package:nutri_fit/presentation/home/pages/home.dart' as _i3;
-import 'package:nutri_fit/presentation/home/pages/ic/diet_page.dart' as _i1;
-import 'package:nutri_fit/presentation/home/pages/ic/location_page.dart' as _i4;
-import 'package:nutri_fit/presentation/home/pages/ic/profil_page.dart' as _i6;
-import 'package:nutri_fit/presentation/home/pages/ic/sport_widget.dart' as _i9;
+import 'package:nutri_fit/presentation/home_pages/diet/pages/diet_page.dart'
+    as _i1;
+import 'package:nutri_fit/presentation/home_pages/location/location_page.dart'
+    as _i4;
+import 'package:nutri_fit/presentation/home_pages/profile/profil_page.dart'
+    as _i6;
+import 'package:nutri_fit/presentation/home_pages/sport/sport_widget.dart'
+    as _i9;
 import 'package:nutri_fit/presentation/intro_sign/pages/get_started.dart'
     as _i2;
 import 'package:nutri_fit/presentation/splash/pages/splash.dart' as _i8;
@@ -91,7 +95,7 @@ class LocationRouteWidget extends _i10.PageRouteInfo<void> {
   static _i10.PageInfo page = _i10.PageInfo(
     name,
     builder: (data) {
-      return const _i4.LocationPageWidget();
+      return _i4.LocationPageWidget();
     },
   );
 }
