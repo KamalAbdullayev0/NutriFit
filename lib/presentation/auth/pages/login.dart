@@ -8,9 +8,13 @@ import 'package:nutri_fit/core/configs/theme/app_colors.dart';
 import 'package:nutri_fit/data/models/auth/signin_user_req.dart';
 import 'package:nutri_fit/domain/usecases/auth/signin.dart';
 import 'package:nutri_fit/presentation/auth/pages/register.dart';
-import 'package:nutri_fit/presentation/home/pages/home.dart';
+import 'package:nutri_fit/presentation/router/router.gr.dart';
 import 'package:nutri_fit/service_locator.dart';
+import 'package:auto_route/auto_route.dart';
 
+
+
+@RoutePage()
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -22,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
 
-  bool _isPasswordVisible = false; // Для управления видимостью пароля
+  bool _isPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -106,13 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         },
                         (r) {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const HomePage(),
-                              ),
-                              (route) => false);
+                           context.router.replaceAll([const HomeRoute()]); 
                         },
                       );
                     },

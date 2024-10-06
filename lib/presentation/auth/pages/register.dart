@@ -7,10 +7,13 @@ import 'package:nutri_fit/core/configs/assets/app_vectors.dart';
 import 'package:nutri_fit/core/configs/theme/app_colors.dart';
 import 'package:nutri_fit/data/models/auth/create_user_req.dart';
 import 'package:nutri_fit/domain/usecases/auth/signup.dart';
-
-import 'package:nutri_fit/presentation/home/pages/home.dart';
+import 'package:nutri_fit/presentation/router/router.gr.dart';
 import 'package:nutri_fit/service_locator.dart';
+import 'package:auto_route/auto_route.dart';
 
+
+
+@RoutePage()
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
 
@@ -108,15 +111,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         },
-                        (r) {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const HomePage(),
-                              ),
-                              (route) => false);
-                        },
+                        (r) { context.router.replaceAll([const HomeRoute()]); },
                       );
                     },
                     title: 'Register'),

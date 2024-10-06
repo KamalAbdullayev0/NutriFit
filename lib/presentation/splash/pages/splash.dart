@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nutri_fit/core/configs/assets/app_images.dart';
-import 'package:nutri_fit/presentation/intro_sign/pages/get_started.dart';
+import 'package:nutri_fit/presentation/router/router.gr.dart';
 
+import 'package:auto_route/auto_route.dart';
+
+@RoutePage()
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
@@ -52,11 +55,8 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> redirect() async {
     await Future.delayed(const Duration(seconds: 2));
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => GetStarted(),
-      ),
-    );
+    if (context.mounted) {
+      context.router.replaceAll([const GetStartedRoute()]);
+    }
   }
 }

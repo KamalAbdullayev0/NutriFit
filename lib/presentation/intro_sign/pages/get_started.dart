@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:nutri_fit/common/widgets/button/basic_app_button.dart';
 import 'package:nutri_fit/core/configs/assets/app_images.dart';
 import 'package:nutri_fit/core/configs/theme/app_colors.dart';
-import 'package:nutri_fit/presentation/auth/pages/login.dart';
-import 'package:nutri_fit/presentation/auth/pages/register.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class GetStarted extends StatefulWidget {
+import 'package:nutri_fit/presentation/router/router.gr.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:auto_route/auto_route.dart';
+
+@RoutePage()
+class GetStartedScreen extends StatefulWidget {
   final PageController _controller = PageController();
-  GetStarted({super.key});
 
   @override
-  State<GetStarted> createState() => _GetStartedState();
+  State<GetStartedScreen> createState() => _GetStartedScreenState();
 }
 
-class _GetStartedState extends State<GetStarted> {
+class _GetStartedScreenState extends State<GetStartedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,12 +89,7 @@ class _GetStartedState extends State<GetStarted> {
                 const SizedBox(height: 16),
                 BasicAppButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => RegisterPage(),
-                      ),
-                    );
+                    context.router.push(const LoginRoute());
                   },
                   title: 'Register',
                   height: 65,
@@ -102,12 +98,7 @@ class _GetStartedState extends State<GetStarted> {
                 const SizedBox(height: 21),
                 BasicAppButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => LoginPage(),
-                      ),
-                    );
+                    context.router.push(const RegisterRoute());
                   },
                   title: 'Login',
                   height: 65,
