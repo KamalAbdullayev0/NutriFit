@@ -19,7 +19,6 @@ class HomePage extends StatelessWidget {
       builder: (context, child) {
         final tabsRouter = context.tabsRouter;
         return Scaffold(
-          backgroundColor: Colors.white,
           body: child,
           bottomNavigationBar: Container(
             width: double.infinity,
