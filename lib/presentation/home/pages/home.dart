@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:nutri_fit/core/configs/theme/app_colors.dart';
 import 'package:nutri_fit/presentation/router/router.gr.dart';
 
 @RoutePage()
@@ -17,30 +19,39 @@ class HomePage extends StatelessWidget {
       builder: (context, child) {
         final tabsRouter = context.tabsRouter;
         return Scaffold(
+          backgroundColor: Colors.white,
           body: child,
-          bottomNavigationBar: BottomNavigationBar(
-            selectedItemColor: Colors.black,
-            unselectedItemColor: Colors.grey,
-            currentIndex: tabsRouter.activeIndex,
-            onTap: (index) => _openPage(index, tabsRouter),
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Diet',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.favorite),
-                label: 'Sport',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.location_on),
-                label: 'Location',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: 'Profil',
-              ),
-            ],
+          bottomNavigationBar: Container(
+            width: double.infinity,
+            margin:
+                const EdgeInsets.only(bottom: 25, left: 25, right: 25, top: 10),
+            child: GNav(
+              onTabChange: (index) => _openPage(index, tabsRouter),
+              selectedIndex: tabsRouter.activeIndex,
+              color: AppColors.green,
+              activeColor: Colors.red,
+              tabBackgroundColor: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 12),
+              duration: const Duration(milliseconds: 300),
+              tabs: const [
+                GButton(
+                  icon: Icons.home,
+                  text: ' Diet',
+                ),
+                GButton(
+                  icon: Icons.favorite,
+                  text: ' Sport',
+                ),
+                GButton(
+                  icon: Icons.location_on,
+                  text: ' Location',
+                ),
+                GButton(
+                  icon: Icons.person,
+                  text: ' Profil',
+                ),
+              ],
+            ),
           ),
         );
       },
