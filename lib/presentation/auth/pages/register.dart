@@ -77,7 +77,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 10),
                 const Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                  "Join NutriFit today and unlock your personalized path to fitness, nutrition, and well-being.",
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,

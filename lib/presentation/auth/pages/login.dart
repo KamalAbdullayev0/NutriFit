@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 10),
                 const Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                  "Welcome back! Let's continue your journey to a healthier, fitter you with NutriFit.",
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,

@@ -101,7 +101,7 @@ Got questions? NutriFit's AI-powered chatbot is here to support you 24/7 with pe
                   onPressed: () {
                     context.router.push(const LoginRoute());
                   },
-                  title: 'Register',
+                  title: 'Login',
                   height: 65,
                   backgroundColor: AppColors.orange,
                 ),
@@ -110,7 +110,7 @@ Got questions? NutriFit's AI-powered chatbot is here to support you 24/7 with pe
                   onPressed: () {
                     context.router.push(const RegisterRoute());
                   },
-                  title: 'Login',
+                  title: 'Register',
                   height: 65,
                   backgroundColor: AppColors.green,
                 ),
