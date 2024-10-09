@@ -17,12 +17,12 @@ class DietPageWidget extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.green[300],
           elevation: 0,
-          title: Row(
+          title: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text(
                     'HI! Insanin adi',
                     style: TextStyle(
@@ -67,8 +67,8 @@ class DietPageWidget extends StatelessWidget {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -125,7 +125,7 @@ class DietPageWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.check_circle,
                     color: Colors.orange,
                   ),

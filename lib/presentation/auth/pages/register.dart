@@ -11,11 +11,9 @@ import 'package:nutri_fit/presentation/router/router.gr.dart';
 import 'package:nutri_fit/service_locator.dart';
 import 'package:auto_route/auto_route.dart';
 
-
-
 @RoutePage()
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+  const RegisterPage({super.key});
 
   @override
   _RegisterPageState createState() => _RegisterPageState();
@@ -111,17 +109,19 @@ class _RegisterPageState extends State<RegisterPage> {
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         },
-                        (r) { context.router.replaceAll([const HomeRoute()]); },
+                        (r) {
+                          context.router.replaceAll([const HomeRoute()]);
+                        },
                       );
                     },
                     title: 'Register'),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text('Or register with'),
-                    Spacer(),
+                    const Text('Or register with'),
+                    const Spacer(),
                     SizedBox(
                       width: 28,
                       height: 28.5,
@@ -129,7 +129,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         AppVectors.google,
                       ),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     SizedBox(
                       height: 29.0,
                       width: 36.0,
@@ -139,7 +139,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
               ],
             ),
           )
@@ -152,7 +152,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return TextField(
       controller: _fullName,
       decoration: const InputDecoration(
-        prefixIcon: const Icon(
+        prefixIcon: Icon(
           Icons.person,
           size: 23,
           color: AppColors.darkgreen,
@@ -168,8 +168,8 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget _emailField(BuildContext context) {
     return TextField(
       controller: _email,
-      decoration: InputDecoration(
-        prefixIcon: const Icon(
+      decoration: const InputDecoration(
+        prefixIcon: Icon(
           Icons.email,
           size: 23,
           color: AppColors.darkgreen,

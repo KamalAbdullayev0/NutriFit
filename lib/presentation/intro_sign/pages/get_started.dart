@@ -11,6 +11,8 @@ import 'package:auto_route/auto_route.dart';
 class GetStartedScreen extends StatefulWidget {
   final PageController _controller = PageController();
 
+  GetStartedScreen({super.key});
+
   @override
   State<GetStartedScreen> createState() => _GetStartedScreenState();
 }
@@ -25,7 +27,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 70,
                 ),
                 Align(
@@ -38,7 +40,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Align(
@@ -49,15 +51,15 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                     width: 300,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 80,
                 ),
 
                 const Spacer(),
                 // PageView и индикатор
                 SizedBox(
-                  height: 100,
-                  width: 100,
+                  height: 200,
+                  width: 250,
                   child: PageView(
                     controller: widget
                         ._controller, // Здесь исправлено на widget._controller
@@ -65,11 +67,19 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                       const SizedBox(
                           height: 50,
                           width: 50,
-                          child: Center(child: Text('Page 1'))),
-                      Container(child: const Center(child: Text('Page 1'))),
+                          child: Center(
+                              child: Text('''"Fuel Your Body, Find Your Balance"
+Discover personalized keto diets and health calculators tailored to your goals. Whether it's body fat, metabolism, or calorie intake NutriFit guides you every step of the way to a healthier, more balanced you'''))),
+                      Container(
+                          child: const Center(
+                              child: Text('''"Move More, Explore Better"
+Find nearby sports salons and fitness centers with just a tap! NutriFit's smart map ensures you stay active and reach your fitness goals, no matter where you are.'''))),
                       SizedBox(
                           child: Container(
-                              child: const Center(child: Text('Page 1')))),
+                              child: const Center(
+                                  child: Text(
+                                      '''"Your Health, Our Chatbot's Mission"
+Got questions? NutriFit's AI-powered chatbot is here to support you 24/7 with personalized answers to keep your health journey on track. Ask away, and let the transformation begin!''')))),
                     ],
                   ),
                 ),

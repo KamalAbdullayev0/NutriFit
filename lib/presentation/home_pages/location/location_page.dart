@@ -3,6 +3,8 @@ import 'package:auto_route/auto_route.dart';
 
 @RoutePage()
 class LocationPageWidget extends StatefulWidget {
+  const LocationPageWidget({super.key});
+
   @override
   _LocationPageWidgetState createState() => _LocationPageWidgetState();
 }
@@ -46,7 +48,7 @@ class _LocationPageWidgetState extends State<LocationPageWidget> {
     return Scaffold(
       backgroundColor: Colors.green[100], // Background color to match the image
       appBar: AppBar(
-        title: Text('Task Progress'),
+        title: const Text('Task Progress'),
         backgroundColor: Colors.green[200],
         elevation: 0, // Flat app bar
       ),
@@ -86,11 +88,11 @@ class _LocationPageWidgetState extends State<LocationPageWidget> {
                                 child: Icon(cards[index]['icon'],
                                     color: Colors.white),
                               ),
-                              SizedBox(width: 8),
+                              const SizedBox(width: 8),
                               Expanded(
                                 child: Text(
                                   cards[index]['number'],
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 18,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -101,15 +103,15 @@ class _LocationPageWidgetState extends State<LocationPageWidget> {
                                   color: Colors.orange[300]), // Checkmark icon
                             ],
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: 8),
                           Text(
                             cards[index]['type'],
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 14,
                               color: Colors.white70,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Row(
                             children: [
                               Expanded(
@@ -118,14 +120,15 @@ class _LocationPageWidgetState extends State<LocationPageWidget> {
                                       0.0, // Check for null value
                                   backgroundColor:
                                       Colors.white.withOpacity(0.3),
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.white),
+                                  valueColor:
+                                      const AlwaysStoppedAnimation<Color>(
+                                          Colors.white),
                                 ),
                               ),
-                              SizedBox(width: 8),
+                              const SizedBox(width: 8),
                               Text(
                                 '${((cards[index]['progress'] ?? 0) * 100).toInt()}%', // Handle null
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                               ),
                             ],
                           ),

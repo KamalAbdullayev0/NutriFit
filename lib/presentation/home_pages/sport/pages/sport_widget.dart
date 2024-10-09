@@ -54,10 +54,10 @@ class _SportPageWidgetState extends State<SportPageWidget> {
         appBar: AppBar(
           backgroundColor: Colors.green[300],
           elevation: 0,
-          title: Row(
+          title: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'HI! Insanin adi',
                 style: TextStyle(fontSize: 20, color: Colors.white),
               ),
@@ -165,11 +165,11 @@ class _SportPageWidgetState extends State<SportPageWidget> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: const Text(
+                child: Text(
                   "Today's plan",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),

@@ -12,11 +12,9 @@ import 'package:nutri_fit/presentation/router/router.gr.dart';
 import 'package:nutri_fit/service_locator.dart';
 import 'package:auto_route/auto_route.dart';
 
-
-
 @RoutePage()
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -110,18 +108,18 @@ class _LoginPageState extends State<LoginPage> {
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         },
                         (r) {
-                           context.router.replaceAll([const HomeRoute()]); 
+                          context.router.replaceAll([const HomeRoute()]);
                         },
                       );
                     },
                     title: 'Sign In'),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text('Login with'),
-                    Spacer(),
+                    const Text('Login with'),
+                    const Spacer(),
                     SizedBox(
                       width: 28,
                       height: 28.5,
@@ -129,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                         AppVectors.google,
                       ),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     SizedBox(
                       height: 29.0,
                       width: 36.0,
@@ -139,18 +137,18 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Column(
                   children: [
                     const SizedBox(height: 15),
                     const Text('Don\'t have an account?'),
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     BasicAppButton(
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => RegisterPage(),
+                            builder: (context) => const RegisterPage(),
                           ),
                         );
                       },
@@ -172,8 +170,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget _emailField() {
     return TextField(
       controller: _email,
-      decoration: InputDecoration(
-        prefixIcon: const Icon(
+      decoration: const InputDecoration(
+        prefixIcon: Icon(
           Icons.email,
           size: 23,
           color: AppColors.darkgreen,

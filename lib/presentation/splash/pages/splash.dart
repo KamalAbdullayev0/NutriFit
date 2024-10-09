@@ -37,7 +37,7 @@ class _SplashPageState extends State<SplashPage> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Image.asset(
@@ -45,7 +45,7 @@ class _SplashPageState extends State<SplashPage> {
             height: 60,
             width: 300,
           ),
-          SizedBox(
+          const SizedBox(
             height: 130,
           ),
         ],
