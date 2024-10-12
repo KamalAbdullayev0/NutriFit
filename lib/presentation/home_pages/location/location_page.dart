@@ -102,11 +102,17 @@ class LocationPageWidget extends StatelessWidget {
             children: [
               Expanded(
                   child: ProgressIndicatorWidget(
-                      label: 'Protein', value: 0.3, progress: '30%')),
+                label: 'Protein',
+                value: 0.3,
+                progress: '30%',
+              )),
               SizedBox(width: 16.0),
               Expanded(
                   child: ProgressIndicatorWidget(
-                      label: 'Carbs', value: 0.5, progress: '50%')),
+                label: 'Carbs',
+                value: 0.5,
+                progress: '50%',
+              )),
             ],
           ),
         ],
