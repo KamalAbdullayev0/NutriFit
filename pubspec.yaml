@@ -45,6 +45,7 @@ dependencies:
   dartz:
   auto_route:
   google_nav_bar:
+  intl:
 
 
 dev_dependencies:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:nutri_fit/common/widgets/root_appbar/root_appbar.dart';
 import 'package:nutri_fit/core/configs/assets/app_images.dart';
 import 'package:nutri_fit/presentation/home_pages/diet/bloc/diet_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,30 +15,7 @@ class DietPageWidget extends StatelessWidget {
       create: (context) =>
           TaskCubit()..loadTasks(), // Initialize the cubit and load tasks
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.green[300],
-          elevation: 0,
-          title: const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'HI! Insanin adi',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-              CircleAvatar(
-                backgroundImage: AssetImage(AppImages.ozun),
-              ),
-            ],
-          ),
-        ),
+        appBar: const RootAppBar(imagePath: AppImages.ozun),
         body: Column(
           children: [
             Container(
