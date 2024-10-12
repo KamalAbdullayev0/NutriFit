@@ -42,7 +42,6 @@ class LocationPageWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           final date =
               now.add(Duration(days: index)).subtract(const Duration(days: 3));
-
           final isSelected = index == 3;
           return GestureDetector(
             onTap: () {},
