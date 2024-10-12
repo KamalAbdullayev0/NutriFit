@@ -14,9 +14,9 @@ class ProfilPageWidget extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            SizedBox(height: 6),
+            const SizedBox(height: 6),
             _buildSummaryCard(),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             _buildMealGrid(),
           ],
         ),
@@ -26,7 +26,7 @@ class ProfilPageWidget extends StatelessWidget {
 
   Widget _buildSummaryCard() {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.blueAccent,
         borderRadius: BorderRadius.circular(12),
@@ -41,11 +41,11 @@ class ProfilPageWidget extends StatelessWidget {
               _buildCalorieInfo('345', 'Burned'),
             ],
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              MacroInfoWidget(
+              const MacroInfoWidget(
                 label: 'Protein',
                 progress: 0.4,
                 value: '31/82g',
@@ -72,14 +72,14 @@ class ProfilPageWidget extends StatelessWidget {
             strokeWidth: 6,
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Text(
           amount,
-          style: TextStyle(color: Colors.white, fontSize: 18),
+          style: const TextStyle(color: Colors.white, fontSize: 18),
         ),
         Text(
           label,
-          style: TextStyle(color: Colors.white70),
+          style: const TextStyle(color: Colors.white70),
         ),
       ],
     );
@@ -90,11 +90,11 @@ class ProfilPageWidget extends StatelessWidget {
       children: [
         Text(
           amount,
-          style: TextStyle(color: Colors.white, fontSize: 18),
+          style: const TextStyle(color: Colors.white, fontSize: 18),
         ),
         Text(
           label,
-          style: TextStyle(color: Colors.white70),
+          style: const TextStyle(color: Colors.white70),
         ),
       ],
     );
@@ -104,9 +104,9 @@ class ProfilPageWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: TextStyle(color: Colors.white)),
-        SizedBox(height: 4),
-        Container(
+        Text(label, style: const TextStyle(color: Colors.white)),
+        const SizedBox(height: 4),
+        SizedBox(
           width: 80,
           child: LinearProgressIndicator(
             value: progress,
@@ -114,8 +114,8 @@ class ProfilPageWidget extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        SizedBox(height: 4),
-        Text(value, style: TextStyle(color: Colors.white)),
+        const SizedBox(height: 4),
+        Text(value, style: const TextStyle(color: Colors.white)),
       ],
     );
   }
@@ -149,15 +149,15 @@ class ProfilPageWidget extends StatelessWidget {
       child: Align(
         alignment: Alignment.topCenter,
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-          margin: EdgeInsets.all(8),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          margin: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             color: Colors.blueAccent,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Text(
             label,
-            style: TextStyle(color: Colors.white, fontSize: 12),
+            style: const TextStyle(color: Colors.white, fontSize: 12),
           ),
         ),
       ),

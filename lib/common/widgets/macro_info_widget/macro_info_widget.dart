@@ -7,21 +7,21 @@ class MacroInfoWidget extends StatelessWidget {
   final double height;
 
   const MacroInfoWidget({
-    Key? key,
+    super.key,
     required this.label,
     required this.progress,
     required this.value,
     this.height = 4.0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: TextStyle(color: Colors.white)),
-        SizedBox(height: 4),
-        Container(
+        Text(label, style: const TextStyle(color: Colors.white)),
+        const SizedBox(height: 4),
+        SizedBox(
           height: height,
           width: 80,
           child: LinearProgressIndicator(
@@ -30,8 +30,8 @@ class MacroInfoWidget extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        SizedBox(height: 4),
-        Text(value, style: TextStyle(color: Colors.white)),
+        const SizedBox(height: 4),
+        Text(value, style: const TextStyle(color: Colors.white)),
       ],
     );
   }

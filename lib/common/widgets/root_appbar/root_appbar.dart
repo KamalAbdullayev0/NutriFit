@@ -14,9 +14,9 @@ class RootAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
+          const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
                 'HI! Insanin adi',
                 style: TextStyle(
@@ -29,7 +29,7 @@ class RootAppBar extends StatelessWidget implements PreferredSizeWidget {
           CircleAvatar(
             backgroundImage: imagePath != null
                 ? AssetImage(imagePath!)
-                : AssetImage(AppImages.ozun),
+                : const AssetImage(AppImages.ozun),
           ),
         ],
       ),

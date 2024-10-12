@@ -18,11 +18,11 @@ class LocationPageWidget extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             _buildDatePicker(context),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             _buildSummaryCard(),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             // _buildDailyFoodSection(),
           ],
         ),
@@ -34,21 +34,22 @@ class LocationPageWidget extends StatelessWidget {
     final now = DateTime.now();
     final dateFormatter = DateFormat('MMM');
 
-    return Container(
+    return SizedBox(
       height: 50,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 7,
         itemBuilder: (context, index) {
           final date =
-              now.add(Duration(days: index)).subtract(Duration(days: 3));
+              now.add(Duration(days: index)).subtract(const Duration(days: 3));
 
           final isSelected = index == 3;
           return GestureDetector(
             onTap: () {},
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 5.0),
-              margin: EdgeInsets.symmetric(horizontal: 4.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 5.0),
+              margin: const EdgeInsets.symmetric(horizontal: 4.0),
               decoration: BoxDecoration(
                 color: isSelected ? Colors.greenAccent : Colors.grey[800],
                 borderRadius: BorderRadius.circular(8.0),
@@ -81,8 +82,8 @@ class LocationPageWidget extends StatelessWidget {
 
   Widget _buildSummaryCard() {
     return Container(
-      padding: EdgeInsets.all(16.0),
-      margin: EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.all(16.0),
+      margin: const EdgeInsets.symmetric(horizontal: 16.0),
       decoration: BoxDecoration(
         color: Colors.grey[900],
         borderRadius: BorderRadius.circular(12.0),
@@ -97,8 +98,8 @@ class LocationPageWidget extends StatelessWidget {
               _buildCalorieInfo('2875 kcal', 'Remaining'),
             ],
           ),
-          SizedBox(height: 16.0),
-          Row(
+          const SizedBox(height: 16.0),
+          const Row(
             children: [
               Expanded(
                   child: ProgressIndicatorWidget(
@@ -124,8 +125,8 @@ class LocationPageWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(amount, style: TextStyle(color: Colors.white, fontSize: 18)),
-        Text(label, style: TextStyle(color: Colors.white54)),
+        Text(amount, style: const TextStyle(color: Colors.white, fontSize: 18)),
+        Text(label, style: const TextStyle(color: Colors.white54)),
       ],
     );
   }

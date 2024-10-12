@@ -6,16 +6,55 @@ import 'package:nutri_fit/presentation/home_pages/diet/bloc/diet_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
-class DietPageWidget extends StatelessWidget {
+class DietPageWidget extends StatefulWidget {
   const DietPageWidget({super.key});
+
+  @override
+  State<DietPageWidget> createState() => _SportPageWidgetState();
+}
+
+class _SportPageWidgetState extends State<DietPageWidget> {
+  int currentIndex = 0;
+
+  final List<Map<String, dynamic>> cards = [
+    {
+      'color': Colors.yellow[700],
+      'number': 'Take the medicine',
+      'type': '3 times a day',
+      'progress': 0.33,
+      'icon': Icons.medication,
+    },
+    {
+      'color': Colors.blue[700],
+      'number': 'Music lessons',
+      'type': 'Every Monday',
+      'progress': 0.1,
+      'icon': Icons.music_note,
+    },
+    {
+      'color': Colors.green[700],
+      'number': 'Exercise',
+      'type': '1 hour daily',
+      'progress': 0.5,
+      'icon': Icons.fitness_center,
+    },
+    {
+      'color': Colors.red[700],
+      'number': 'Drink water',
+      'type': '8 glasses daily',
+      'progress': null,
+      'icon': Icons.local_drink,
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          TaskCubit()..loadTasks(), // Initialize the cubit and load tasks
+      create: (context) => TaskCubit()..loadTasks(),
       child: Scaffold(
-        appBar: const RootAppBar(imagePath: AppImages.ozun),
+        appBar: RootAppBar(
+          imagePath: AppImages.ozun,
+        ),
         body: Column(
           children: [
             Container(
@@ -27,22 +66,91 @@ class DietPageWidget extends StatelessWidget {
                   bottomRight: Radius.circular(30),
                 ),
               ),
-              child: BlocBuilder<TaskCubit, TaskState>(
-                builder: (context, state) {
-                  if (state is TaskLoading) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (state is TaskLoaded) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: state.tasks
-                          .map((task) => taskCard(
-                              task.title, task.subtitle, task.progress))
-                          .toList(),
+              child: SizedBox(
+                height: 210,
+                child: PageView.builder(
+                  itemCount: cards.length,
+                  controller: PageController(viewportFraction: 0.85),
+                  onPageChanged: (index) {
+                    setState(() {
+                      currentIndex = index;
+                    });
+                  },
+                  itemBuilder: (context, index) {
+                    return Transform.scale(
+                      scale: index == currentIndex ? 1.0 : 0.92,
+                      child: Card(
+                        color: cards[index]['color'],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor:
+                                        Colors.white.withOpacity(0.3),
+                                    child: Icon(
+                                      cards[index]['icon'],
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Expanded(
+                                    child: Text(
+                                      cards[index]['number'],
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.check_circle,
+                                    color: Colors.orange[300],
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                cards[index]['type'],
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white70,
+                                ),
+                              ),
+                              const Spacer(),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: LinearProgressIndicator(
+                                      value: cards[index]['progress'] ?? 0.0,
+                                      backgroundColor:
+                                          Colors.white.withOpacity(0.3),
+                                      valueColor:
+                                          const AlwaysStoppedAnimation<Color>(
+                                              Colors.white),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    '${((cards[index]['progress'] ?? 0) * 100).toInt()}%',
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     );
-                  } else {
-                    return const Text('Error loading tasks');
-                  }
-                },
+                  },
+                ),
               ),
             ),
             const Padding(
@@ -51,6 +159,7 @@ class DietPageWidget extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Today's plan",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -91,49 +200,6 @@ class DietPageWidget extends StatelessWidget {
     );
   }
 
-  Widget taskCard(String title, String subtitle, int progress) {
-    return Expanded(
-      child: Card(
-        elevation: 5,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  const Icon(
-                    Icons.check_circle,
-                    color: Colors.orange,
-                  ),
-                  const SizedBox(width: 10),
-                  Text(
-                    title,
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Text(
-                subtitle,
-                style: const TextStyle(color: Colors.grey, fontSize: 14),
-              ),
-              const SizedBox(height: 16),
-              LinearProgressIndicator(
-                value: progress / 100,
-                color: Colors.green,
-                backgroundColor: Colors.green[100],
-              ),
-              const SizedBox(height: 8),
-              Text('$progress%', style: const TextStyle(color: Colors.green)),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget planItem({
     required IconData icon,
     required String title,
@@ -145,7 +211,7 @@ class DietPageWidget extends StatelessWidget {
         backgroundColor: Colors.grey[200],
         child: Icon(icon, color: Colors.green),
       ),
-      title: Text(title),
+      title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
       subtitle: Text(subtitle),
       trailing: Text(
         time,
