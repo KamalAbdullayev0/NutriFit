@@ -24,7 +24,9 @@ class ProgressIndicatorWidget extends StatelessWidget {
           child: CircularProgressIndicator(
             value: value,
             backgroundColor: Colors.black,
-            valueColor: const AlwaysStoppedAnimation<Color>(Colors.greenAccent),
+            strokeWidth: 8.0,
+            valueColor: const AlwaysStoppedAnimation<Color>(
+                Color.fromARGB(255, 41, 122, 0)),
           ),
         ),
         const SizedBox(height: 8.0),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:nutri_fit/common/widgets/macro_info_widget/macro_info_widget.dart';
+import 'package:nutri_fit/common/widgets/progress_indicator/progress_indicator.dart';
 import 'package:nutri_fit/common/widgets/root_appbar/root_appbar.dart';
 import 'package:nutri_fit/core/configs/assets/app_images.dart';
 import 'package:nutri_fit/presentation/home_pages/diet/bloc/diet_bloc.dart';
@@ -18,32 +20,25 @@ class _SportPageWidgetState extends State<DietPageWidget> {
 
   final List<Map<String, dynamic>> cards = [
     {
-      'color': Colors.yellow[700],
+      'color': const Color.fromARGB(255, 217, 180, 85),
       'number': 'Take the medicine',
       'type': '3 times a day',
       'progress': 0.33,
       'icon': Icons.medication,
     },
     {
-      'color': Colors.blue[700],
+      'color': const Color.fromARGB(255, 72, 128, 184),
       'number': 'Music lessons',
       'type': 'Every Monday',
       'progress': 0.1,
       'icon': Icons.music_note,
     },
     {
-      'color': Colors.green[700],
+      'color': const Color.fromARGB(255, 173, 105, 199),
       'number': 'Exercise',
       'type': '1 hour daily',
       'progress': 0.5,
       'icon': Icons.fitness_center,
-    },
-    {
-      'color': Colors.red[700],
-      'number': 'Drink water',
-      'type': '8 glasses daily',
-      'progress': null,
-      'icon': Icons.local_drink,
     },
   ];
 
@@ -86,61 +81,40 @@ class _SportPageWidgetState extends State<DietPageWidget> {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
-                          child: Column(
+                          child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
-                                  CircleAvatar(
-                                    backgroundColor:
-                                        Colors.white.withOpacity(0.3),
-                                    child: Icon(
-                                      cards[index]['icon'],
-                                      color: Colors.white,
-                                    ),
+                                  MacroInfoWidget(
+                                    label: 'Protein',
+                                    progress: 0.4,
+                                    value: '31 / 54gr',
                                   ),
-                                  const SizedBox(width: 8),
-                                  Expanded(
-                                    child: Text(
-                                      cards[index]['number'],
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
+                                  MacroInfoWidget(
+                                    label: 'Protein',
+                                    progress: 0.4,
+                                    value: '31 / 54gr',
                                   ),
-                                  Icon(
-                                    Icons.check_circle,
-                                    color: Colors.orange[300],
+                                  MacroInfoWidget(
+                                    label: 'Protein',
+                                    progress: 0.4,
+                                    value: '31 / 54gr',
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 8),
-                              Text(
-                                cards[index]['type'],
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.white70,
-                                ),
-                              ),
-                              const Spacer(),
+                              const SizedBox(width: 75),
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Expanded(
-                                    child: LinearProgressIndicator(
-                                      value: cards[index]['progress'] ?? 0.0,
-                                      backgroundColor:
-                                          Colors.white.withOpacity(0.3),
-                                      valueColor:
-                                          const AlwaysStoppedAnimation<Color>(
-                                              Colors.white),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    '${((cards[index]['progress'] ?? 0) * 100).toInt()}%',
-                                    style: const TextStyle(color: Colors.white),
+                                  ProgressIndicatorWidget(
+                                    label: 'Calori',
+                                    progress: '234',
+                                    value: 0.4,
+                                    height: 120,
                                   ),
                                 ],
                               ),
