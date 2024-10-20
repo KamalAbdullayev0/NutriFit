@@ -14,18 +14,21 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
   @override
   Future<Either> signin(SigninUserReq signinUserReq) async {
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: signinUserReq.email,
         password: signinUserReq.password,
       );
+      print(
+          'User signed in: ${signinUserReq.email}'); // Принт для проверки успешного входа
       return const Right('Signin successful');
     } on FirebaseException catch (e) {
       String message = '';
       if (e.code == 'invalid-email') {
         message = 'No user found for that email.';
-      } else if (e.code == 'invalid_credential') {
-        message = 'wrong password provided for that user.';
+      } else if (e.code == 'invalid-credential') {
+        message = 'Wrong password provided for that user.';
       }
+      print('Signin error: $message'); // Принт для проверки ошибок входа
       return Left(message);
     }
   }
@@ -34,12 +37,28 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
   Future<Either> signup(CreateUserReq createUserReq) async {
     try {
       var data = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: createUserReq.email, password: createUserReq.password);
+        email: createUserReq.email,
+        password: createUserReq.password,
+      );
 
-      FirebaseFirestore.instance.collection('Users').add({
-        'email': data.user?.email,
-        'name': createUserReq.fullName,
-      });
+      print(
+          'User signed up: ${data.user?.email}'); // Принт для проверки успешной регистрации
+      // Проверяем, был ли создан UID
+      if (data.user != null) {
+        print(
+            'User UID: ${data.user?.uid}'); // Принт для проверки UID пользователя
+
+        await FirebaseFirestore.instance
+            .collection('Users')
+            .doc(data.user?.uid)
+            .set({
+          'name': createUserReq.fullName,
+          'email': data.user?.email,
+        });
+
+        print(
+            'User data written to Firestore: ${data.user?.uid}'); // Принт для проверки записи в Firestore
+      }
 
       return const Right('Signup successful');
     } on FirebaseException catch (e) {
@@ -51,6 +70,7 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
       } else {
         message = 'An error occurred while signing up.';
       }
+      print('Signup error: $message'); // Принт для проверки ошибок регистрации
       return Left(message);
     }
   }

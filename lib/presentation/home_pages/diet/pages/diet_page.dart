@@ -4,8 +4,6 @@ import 'package:nutri_fit/common/widgets/macro_info_widget/macro_info_widget.dar
 import 'package:nutri_fit/common/widgets/progress_indicator/progress_indicator.dart';
 import 'package:nutri_fit/common/widgets/root_appbar/root_appbar.dart';
 import 'package:nutri_fit/core/configs/assets/app_images.dart';
-import 'package:nutri_fit/presentation/home_pages/diet/bloc/diet_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class DietPageWidget extends StatefulWidget {
@@ -45,182 +43,185 @@ class _SportPageWidgetState extends State<DietPageWidget> {
   final List<Map<String, dynamic>> meals = [
     {
       'color': const Color.fromARGB(255, 217, 180, 85),
+      'text': 'Breakfast',
     },
     {
       'color': const Color.fromARGB(255, 72, 128, 184),
+      'text': 'Lunch',
     },
     {
       'color': const Color.fromARGB(255, 173, 105, 199),
+      'text': 'Dinner',
     },
     {
       'color': const Color.fromARGB(255, 49, 54, 108),
+      'text': 'Snack',
     },
     {
       'color': const Color.fromARGB(255, 198, 46, 120),
+      'text': 'Supper',
     },
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: RootAppBar(
+      appBar: const RootAppBar(
         imagePath: AppImages.ozun,
       ),
-      body: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16.0),
-            decoration: BoxDecoration(
-              color: Colors.green[300],
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(30),
-                bottomRight: Radius.circular(30),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.green[300],
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30),
+                ),
               ),
-            ),
-            child: SizedBox(
-              height: 210,
-              child: PageView.builder(
-                itemCount: cards.length,
-                controller: PageController(viewportFraction: 0.85),
-                onPageChanged: (index) {
-                  setState(() {
-                    currentIndex = index;
-                  });
-                },
-                itemBuilder: (context, index) {
-                  return Transform.scale(
-                    scale: index == currentIndex ? 1.0 : 0.92,
-                    child: Card(
-                      color: cards[index]['color'],
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                MacroInfoWidget(
-                                  label: 'Protein',
-                                  progress: 0.4,
-                                  value: '31 / 54gr',
-                                ),
-                                MacroInfoWidget(
-                                  label: 'Protein',
-                                  progress: 0.4,
-                                  value: '31 / 54gr',
-                                ),
-                                MacroInfoWidget(
-                                  label: 'Protein',
-                                  progress: 0.4,
-                                  value: '31 / 54gr',
-                                ),
-                              ],
-                            ),
-                            const SizedBox(width: 75),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                ProgressIndicatorWidget(
-                                  label: 'Calori',
-                                  progress: '234',
-                                  value: 0.4,
-                                  height: 120,
-                                ),
-                              ],
-                            ),
-                          ],
+              child: SizedBox(
+                height: 210,
+                child: PageView.builder(
+                  itemCount: cards.length,
+                  controller: PageController(viewportFraction: 0.85),
+                  onPageChanged: (index) {
+                    if (currentIndex != index) {
+                      setState(() {
+                        currentIndex = index;
+                      });
+                    }
+                  },
+                  itemBuilder: (context, index) {
+                    return Transform.scale(
+                      scale: index == currentIndex ? 1.0 : 0.92,
+                      child: Card(
+                        color: cards[index]['color'] ?? Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  MacroInfoWidget(
+                                    label: 'Protein',
+                                    progress: 0.4,
+                                    value: '31 / 54gr',
+                                  ),
+                                  MacroInfoWidget(
+                                    label: 'Protein',
+                                    progress: 0.4,
+                                    value: '31 / 54gr',
+                                  ),
+                                  MacroInfoWidget(
+                                    label: 'Protein',
+                                    progress: 0.4,
+                                    value: '31 / 54gr',
+                                  ),
+                                ],
+                              ),
+                              SizedBox(width: 75),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  ProgressIndicatorWidget(
+                                    label: 'Calori',
+                                    progress: '234',
+                                    value: 0.4,
+                                    height: 120,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Today's menu",
-                style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Today's menu",
+                  style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
-          ),
-          _buildDatePicker(context),
-        ],
-      ),
-    );
-  }
-
-  Widget planItem({
-    required IconData icon,
-    required String title,
-    required String subtitle,
-    required String time,
-  }) {
-    return ListTile(
-      leading: CircleAvatar(
-        backgroundColor: Colors.grey[200],
-        child: Icon(icon, color: Colors.green),
-      ),
-      title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-      subtitle: Text(subtitle),
-      trailing: Text(
-        time,
-        style: const TextStyle(color: Colors.grey),
+            _buildDatePicker(context),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildDatePicker(BuildContext context) {
     return SizedBox(
-      height: 50,
+      height: 100, // Задаем высоту для контейнера
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 5, // Set the correct item count based on your data
+        itemCount: meals.length,
         itemBuilder: (context, index) {
-          final isSelected =
-              index == _selectedIndex; // Check if this is the selected index
-
-          return GestureDetector(
-            onTap: () {
-              setState(() {
-                _selectedIndex = index; // Update the selected index on tap
-              });
-              print("Карточка $index была нажата!");
-            },
-            child: Card(
-              color: meals[index]['color'],
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10.0, vertical: 1.0),
-                margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Breakfast', // Display the title
-                      style: TextStyle(
-                        color: isSelected ? Colors.black : Colors.white,
-                        fontSize: 16,
+          final isSelected = index == _selectedIndex;
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
+            child: Stack(
+              children: [
+                Container(
+                  width:
+                      100, // Задаем ширину для контейнера, чтобы избежать бесконечного размера
+                  decoration: BoxDecoration(
+                    color: meals[index]['color'] ?? Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        spreadRadius: 1,
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
                       ),
-                    ),
-                    Text(
-                      'sagol', // Display the subtitle
-                      style: TextStyle(
-                        color: isSelected ? Colors.black : Colors.white54,
-                        fontSize: 12,
+                    ],
+                    border: Border.all(color: Colors.black.withOpacity(0.2)),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  clipBehavior: Clip.hardEdge,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        meals[index]['text'] ?? 'Default Meal',
+                        style: TextStyle(
+                          color: isSelected ? Colors.black : Colors.white54,
+                          fontSize: 16,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+                Positioned.fill(
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(10),
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = index;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ],
             ),
           );
         },
