@@ -4,12 +4,20 @@ import 'package:nutri_fit/core/configs/theme/app_colors.dart';
 class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String? imagePath;
   final bool hideBack;
-  const BasicAppbar({super.key, this.imagePath, this.hideBack = false});
+  final Color? logoColor;
+  final Color? backgroundColor;
+  const BasicAppbar(
+      {super.key,
+      this.imagePath,
+      this.hideBack = false,
+      this.logoColor,
+      this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: const Color.fromARGB(0, 249, 235, 235),
+      backgroundColor:
+          backgroundColor ?? const Color.fromARGB(0, 249, 235, 235),
       elevation: 0,
       centerTitle: true,
       title: imagePath != null
@@ -31,10 +39,10 @@ class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
                   color: Colors.white.withOpacity(0.03),
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.arrow_back_ios_new,
                   size: 30,
-                  color: AppColors.orange,
+                  color: logoColor ?? AppColors.orange,
                 ),
               ),
             ),

@@ -110,7 +110,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         },
                         (r) {
-                          context.router.replaceAll([const HomeRoute()]);
+                          context.router.replaceAll([const IWantToRoute()]);
                         },
                       );
                     },

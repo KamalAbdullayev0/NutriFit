@@ -42,24 +42,29 @@ class _SportPageWidgetState extends State<DietPageWidget> {
   ];
   final List<Map<String, dynamic>> meals = [
     {
-      'color': const Color.fromARGB(255, 217, 180, 85),
+      'color': const Color.fromARGB(234, 234, 234, 255),
       'text': 'Breakfast',
+      'emoji': '🥑',
     },
     {
-      'color': const Color.fromARGB(255, 72, 128, 184),
+      'color': Colors.white,
       'text': 'Lunch',
+      'emoji': '🥗',
     },
     {
-      'color': const Color.fromARGB(255, 173, 105, 199),
+      'color': Colors.white,
       'text': 'Dinner',
+      'emoji': '🍲',
     },
     {
-      'color': const Color.fromARGB(255, 49, 54, 108),
+      'color': Colors.white,
       'text': 'Snack',
+      'emoji': '🥜',
     },
     {
-      'color': const Color.fromARGB(255, 198, 46, 120),
-      'text': 'Supper',
+      'color': Colors.white,
+      'text': 'Drink',
+      'emoji': '🧃',
     },
   ];
 
@@ -150,25 +155,26 @@ class _SportPageWidgetState extends State<DietPageWidget> {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: EdgeInsets.only(left: 16, top: 16),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Today's menu",
+                  "Pick your diet",
                   style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
-            _buildDatePicker(context),
+            _buildPickYourDiet(context),
+            _buildAllMeals(context),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildDatePicker(BuildContext context) {
+  Widget _buildPickYourDiet(BuildContext context) {
     return SizedBox(
-      height: 100, // Задаем высоту для контейнера
+      height: 120, // Задаем высоту для контейнера
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: meals.length,
@@ -179,19 +185,170 @@ class _SportPageWidgetState extends State<DietPageWidget> {
             child: Stack(
               children: [
                 Container(
-                  width:
-                      100, // Задаем ширину для контейнера, чтобы избежать бесконечного размера
+                  width: 100,
                   decoration: BoxDecoration(
                     color: meals[index]['color'] ?? Colors.white,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
+                        color: Colors.black.withOpacity(0.05),
                         spreadRadius: 1,
-                        blurRadius: 8,
-                        offset: const Offset(0, 2),
+                        blurRadius: 10,
+                        offset: const Offset(0, 4),
                       ),
                     ],
-                    border: Border.all(color: Colors.black.withOpacity(0.2)),
+                    border: Border.all(color: Colors.black.withOpacity(0.15)),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  clipBehavior: Clip.hardEdge,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        meals[index]['emoji'] ?? '🍴',
+                        style: TextStyle(
+                          fontSize: 36,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        meals[index]['text'] ?? 'Default Meal',
+                        style: TextStyle(
+                          color: isSelected ? Colors.red : Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Positioned.fill(
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(10),
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = index;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildAllMeals(BuildContext context) {
+    return SizedBox(
+      height: 2000,
+      child: SizedBox(
+        child: ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          scrollDirection: Axis.vertical,
+          itemCount: meals.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+              child: Container(
+                width: double.infinity,
+                height: 400,
+                color: const Color.fromARGB(
+                    249, 250, 251, 255), //rgba(249,250,251,255)
+                child: Column(
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 16, top: 16, right: 16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                meals[index]['emoji'] ?? '🍴',
+                                style: TextStyle(
+                                  fontSize: 36,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                meals[index]['text'] ?? 'Default Meal',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            'More',
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _MealsVertical(context),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _MealsVertical(BuildContext context) {
+    return SizedBox(
+      height: 300, // Задаем высоту для контейнера
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: meals.length,
+        itemBuilder: (context, index) {
+          final isSelected = index == _selectedIndex;
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+            child: Stack(
+              children: [
+                Container(
+                  width: 280,
+                  decoration: BoxDecoration(
+                    color: meals[index]['color'] ?? Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.05),
+                        spreadRadius: 0,
+                        blurRadius: 10,
+                        offset: const Offset(1, 1),
+                      ),
+                    ],
+                    border: Border.all(color: Colors.black.withOpacity(0.08)),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   clipBehavior: Clip.hardEdge,
@@ -199,10 +356,19 @@ class _SportPageWidgetState extends State<DietPageWidget> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
+                        meals[index]['emoji'] ?? '🍴',
+                        style: TextStyle(
+                          fontSize: 36,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
                         meals[index]['text'] ?? 'Default Meal',
                         style: TextStyle(
-                          color: isSelected ? Colors.black : Colors.white54,
+                          color: isSelected ? Colors.red : Colors.black,
                           fontSize: 16,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],

@@ -10,6 +10,21 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: LoginRoute.page, path: '/get-started/login'),
         AutoRoute(page: RegisterRoute.page, path: '/get-started/register'),
         AutoRoute(
+            page: IWantToRoute.page, path: '/get-started/register/iwantto'),
+        AutoRoute(
+            page: WhatIsAgeRoute.page,
+            path: '/get-started/register/iwantto/IsAge'),
+        AutoRoute(
+            page: WhatIsAgeHeightRoute.page,
+            path: '/get-started/register/iwantto/IsAge/IsHeight'),
+            AutoRoute(
+            page: WhatIsAgeWeightRoute.page,
+            path: '/get-started/register/iwantto/IsAge/IsHeight/IsWeight'),
+            AutoRoute(
+            page: WhatIsGenderRoute.page,
+            path: '/get-started/register/iwantto/IsAge/IsHeight/IsWeight/IsGender'),
+            
+        AutoRoute(
           page: HomeRoute.page,
           path: '/home',
           children: [

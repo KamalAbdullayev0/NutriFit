@@ -56,7 +56,7 @@ class _SplashPageState extends State<SplashPage> {
   Future<void> redirect() async {
     await Future.delayed(const Duration(seconds: 2));
     if (context.mounted) {
-      context.router.replaceAll([const GetStartedRoute()]);
+      context.router.replaceAll([GetStartedRoute()]);
     }
   }
 }
