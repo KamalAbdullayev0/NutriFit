@@ -177,7 +177,7 @@ class ProfilRouteWidget extends _i15.PageRouteInfo<void> {
   static _i15.PageInfo page = _i15.PageInfo(
     name,
     builder: (data) {
-      return const _i7.ProfilPageWidget();
+      return const _i7.ProfilePageWidget();
     },
   );
 }

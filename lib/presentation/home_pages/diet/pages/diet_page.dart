@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:nutri_fit/common/widgets/macro_info_widget/macro_info_widget.dart';
@@ -45,26 +47,36 @@ class _SportPageWidgetState extends State<DietPageWidget> {
       'color': const Color.fromARGB(234, 234, 234, 255),
       'text': 'Breakfast',
       'emoji': '🥑',
+      'images': AppImages.sekil1,
+      'yemek_adi': 'Yoqurt',
     },
     {
       'color': Colors.white,
       'text': 'Lunch',
       'emoji': '🥗',
+      'images': AppImages.sekil2,
+      'yemek_adi': 'Tavuk',
     },
     {
       'color': Colors.white,
       'text': 'Dinner',
       'emoji': '🍲',
+      'images': AppImages.sekil3,
+      'yemek_adi': 'Et',
     },
     {
       'color': Colors.white,
       'text': 'Snack',
       'emoji': '🥜',
+      'images': AppImages.sekil4,
+      'yemek_adi': 'Kuruyemiş',
     },
     {
       'color': Colors.white,
       'text': 'Drink',
       'emoji': '🧃',
+      'images': AppImages.sekil5,
+      'yemek_adi': 'Su',
     },
   ];
 
@@ -337,7 +349,7 @@ class _SportPageWidgetState extends State<DietPageWidget> {
             child: Stack(
               children: [
                 Container(
-                  width: 280,
+                  width: 240,
                   decoration: BoxDecoration(
                     color: meals[index]['color'] ?? Colors.white,
                     boxShadow: [
@@ -355,38 +367,65 @@ class _SportPageWidgetState extends State<DietPageWidget> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        meals[index]['emoji'] ?? '🍴',
-                        style: TextStyle(
-                          fontSize: 36,
-                          fontWeight: FontWeight.w500,
+                      meals[index]['images'] != null
+                          ? Image.asset(
+                              meals[index]['images'],
+                              width: 240,
+                              height: 240,
+                              fit: BoxFit.cover,
+                            )
+                          : Container(),
+                      Container(
+                        width: 240,
+                        height: 58,
+                        color: Colors.white,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              meals[index]['yemek_adi'] ?? 'Default Meal',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      SizedBox(height: 5),
-                      Text(
-                        meals[index]['text'] ?? 'Default Meal',
-                        style: TextStyle(
-                          color: isSelected ? Colors.red : Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
+
+                      // Text(
+                      //   meals[index]['emoji'] ?? '🍴',
+                      //   style: TextStyle(
+                      //     fontSize: 36,
+                      //     fontWeight: FontWeight.w500,
+                      //   ),
+                      // ),
+                      // SizedBox(height: 5),
+                      // Text(
+                      //   meals[index]['text'] ?? AppImages.sekil1,
+                      //   style: TextStyle(
+                      //     color: isSelected ? Colors.red : Colors.black,
+                      //     fontSize: 16,
+                      //     fontWeight: FontWeight.w500,
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
-                Positioned.fill(
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(10),
-                      onTap: () {
-                        setState(() {
-                          _selectedIndex = index;
-                        });
-                      },
-                    ),
-                  ),
-                ),
+                // Positioned.fill(
+                //   child: Material(
+                //     color: Colors.transparent,
+                //     child: InkWell(
+                //       borderRadius: BorderRadius.circular(10),
+                //       onTap: () {
+                //         setState(() {
+                //           _selectedIndex = index;
+                //         });
+                //       },
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           );

@@ -22,13 +22,11 @@ class _IWantToScreenState extends State<IWantToScreen> {
     "Live a healthier lifestyle",
   ];
 
-  
   void selectGoal(String goal) {
     setState(() {
       selectedGoal = goal;
     });
   }
-
 
   // Future<void> saveToFirestore() async {
   //   if (selectedGoal != null) {
@@ -71,16 +69,13 @@ class _IWantToScreenState extends State<IWantToScreen> {
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: selectedGoal == goal
-                        ? Colors.red
-                        : Colors.grey[200],
+                    color: selectedGoal == goal ? Colors.red : Colors.grey[200],
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
                     goal,
                     style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500),
+                        fontSize: 18, fontWeight: FontWeight.w500),
                   ),
                 ),
               );
@@ -90,7 +85,7 @@ class _IWantToScreenState extends State<IWantToScreen> {
               'You can select only one goal',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300),
             ),
-            const SizedBox(height: 370),
+            Spacer(),
             ElevatedButton(
               onPressed: () {
                 context.router.push(WhatIsAgeRoute());
@@ -112,6 +107,7 @@ class _IWantToScreenState extends State<IWantToScreen> {
                 ),
               ),
             ),
+            SizedBox(height: 50),
           ],
         ),
       ),

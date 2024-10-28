@@ -120,7 +120,7 @@ class _WhatIsAgeWeightScreenState extends State<WhatIsAgeWeightScreen> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 255),
+          Spacer(),
           ElevatedButton(
             onPressed: () {
               // context.router.push(());
@@ -140,6 +140,7 @@ class _WhatIsAgeWeightScreenState extends State<WhatIsAgeWeightScreen> {
               ),
             ),
           ),
+          SizedBox(height: 50),
         ],
       ),
     );

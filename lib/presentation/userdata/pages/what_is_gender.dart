@@ -87,7 +87,7 @@ class _WhatIsGenderScreenState extends State<WhatIsGenderScreen> {
               'share your personal information with anyone.',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300),
             ),
-            const SizedBox(height: 470),
+            Spacer(),
             ElevatedButton(
               onPressed: () {
                 context.router.replaceAll([const HomeRoute()]);
@@ -109,6 +109,7 @@ class _WhatIsGenderScreenState extends State<WhatIsGenderScreen> {
                 ),
               ),
             ),
+            SizedBox(height: 50),
           ],
         ),
       ),

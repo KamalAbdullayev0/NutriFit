@@ -39,7 +39,6 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
             child: Column(
               children: [
-                const SizedBox(height: 0),
                 Align(
                   alignment: Alignment.center,
                   child: Container(
@@ -67,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
                 const Text(
                   'Welcome Back',
                   style: TextStyle(
@@ -75,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
                 const Text(
                   "Welcome back! Let's continue your journey to a healthier, fitter you with NutriFit.",
                   style: TextStyle(
@@ -84,11 +83,11 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 15),
+                Spacer(),
                 _emailField(),
                 const SizedBox(height: 15),
                 _passwordField(),
-                const SizedBox(height: 15),
+                Spacer(),
                 BasicAppButton(
                     backgroundColor: AppColors.green,
                     height: 65,
@@ -112,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                       );
                     },
                     title: 'Sign In'),
-                const SizedBox(height: 15),
+                const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -136,12 +135,12 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 15),
+                Spacer(),
                 Column(
                   children: [
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 10),
                     const Text('Don\'t have an account?'),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 10),
                     BasicAppButton(
                       onPressed: () {
                         context.router.push(const RegisterRoute());

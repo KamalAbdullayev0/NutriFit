@@ -67,15 +67,15 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
+                const Spacer(),
                 const Text(
                   'Start your journey',
                   style: TextStyle(
-                    fontSize: 40,
+                    fontSize: 36,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 16),
                 const Text(
                   "Join NutriFit today and unlock your personalized path to fitness, nutrition, and well-being.",
                   style: TextStyle(
@@ -84,13 +84,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 25),
+                const Spacer(),
                 _fullNameField(context),
-                const SizedBox(height: 15),
+                const SizedBox(height: 10),
                 _emailField(context),
-                const SizedBox(height: 15),
+                const SizedBox(height: 10),
                 _passwordField(context),
-                const SizedBox(height: 15),
+                const Spacer(),
                 BasicAppButton(
                     backgroundColor: AppColors.green,
                     height: 65,
@@ -139,7 +139,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 15),
+                const Spacer(),
+                const Spacer(),
               ],
             ),
           )

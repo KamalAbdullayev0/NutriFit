@@ -24,7 +24,10 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
       body: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
+            padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.1,
+              vertical: MediaQuery.of(context).size.height * 0.05,
+            ),
             child: Column(
               children: [
                 const SizedBox(
@@ -51,35 +54,25 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                     width: 300,
                   ),
                 ),
-                const SizedBox(
-                  height: 80,
-                ),
-
                 const Spacer(),
-                // PageView и индикатор
                 SizedBox(
                   height: 200,
-                  width: 250,
+                  width: 300,
                   child: PageView(
                     controller: widget
                         ._controller, // Здесь исправлено на widget._controller
-                    children: [
-                      const SizedBox(
-                          height: 50,
-                          width: 50,
+                    children: const [
+                      SizedBox(
                           child: Center(
                               child: Text('''"Fuel Your Body, Find Your Balance"
 Discover personalized keto diets and health calculators tailored to your goals. Whether it's body fat, metabolism, or calorie intake NutriFit guides you every step of the way to a healthier, more balanced you'''))),
-                      Container(
-                          child: const Center(
-                              child: Text('''"Move More, Explore Better"
-Find nearby sports salons and fitness centers with just a tap! NutriFit's smart map ensures you stay active and reach your fitness goals, no matter where you are.'''))),
+                      Center(child: Text('''"Move More, Explore Better"
+Find nearby sports salons and fitness centers with just a tap! NutriFit's smart map ensures you stay active and reach your fitness goals, no matter where you are.''')),
                       SizedBox(
-                          child: Container(
-                              child: const Center(
-                                  child: Text(
-                                      '''"Your Health, Our Chatbot's Mission"
-Got questions? NutriFit's AI-powered chatbot is here to support you 24/7 with personalized answers to keep your health journey on track. Ask away, and let the transformation begin!''')))),
+                          child: Center(
+                              child:
+                                  Text('''"Your Health, Our Chatbot's Mission"
+Got questions? NutriFit's AI-powered chatbot is here to support you 24/7 with personalized answers to keep your health journey on track. Ask away, and let the transformation begin!'''))),
                     ],
                   ),
                 ),
@@ -95,7 +88,6 @@ Got questions? NutriFit's AI-powered chatbot is here to support you 24/7 with pe
                   ),
                 ),
                 const SizedBox(height: 16),
-
                 const SizedBox(height: 16),
                 BasicAppButton(
                   onPressed: () {

@@ -30,9 +30,9 @@ class _WhatIsAgeScreenState extends State<WhatIsAgeScreen> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 160),
+          Spacer(),
           SizedBox(
-            height: 280,
+            height: MediaQuery.of(context).size.height * 0.5,
             child: ListWheelScrollView.useDelegate(
               // overAndUnderCenterOpacity: 0.3,
               // diameterRatio: 1.5,
@@ -81,14 +81,11 @@ class _WhatIsAgeScreenState extends State<WhatIsAgeScreen> {
               ),
             ),
           ),
-          SizedBox(height: 244),
-          // Кнопка "CONTINUE"
+          Spacer(),
+          Spacer(),
           ElevatedButton(
             onPressed: () {
-              context.router.push(WhatIsAgeHeightRoute());
-              // context.router.push(WhatIsAgeRoute());
-
-              // saveToFirestore();
+              context.router.push(const WhatIsAgeHeightRoute());
             },
             child: const Text(
               'CONTINUE',
@@ -105,7 +102,7 @@ class _WhatIsAgeScreenState extends State<WhatIsAgeScreen> {
               ),
             ),
           ),
-          SizedBox(height: 36),
+          SizedBox(height: 50),
         ],
       ),
     );

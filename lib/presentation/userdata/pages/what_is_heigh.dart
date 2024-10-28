@@ -31,15 +31,14 @@ class _WhatIsAgeHeightScreenState extends State<WhatIsAgeHeightScreen> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 0),
           Padding(
-            padding: const EdgeInsets.only(left: 8, right: 50),
+            padding: const EdgeInsets.only(left: 10, right: 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  height: 660,
-                  width: 140,
+                  width: MediaQuery.of(context).size.width * 0.32,
+                  height: MediaQuery.of(context).size.height * 0.66,
                   child: ListWheelScrollView.useDelegate(
                     itemExtent: 15, // Высота элемента списка
                     physics: const FixedExtentScrollPhysics(),
@@ -86,12 +85,12 @@ class _WhatIsAgeHeightScreenState extends State<WhatIsAgeHeightScreen> {
                   ),
                 ),
                 Container(
-                  width: 100, // Удлиненная каждая 10-я линия
+                  width: MediaQuery.of(context).size.width *
+                      0.24, // Удлиненная каждая 10-я линия
                   height: 3, // Толщина линии
                   color: const Color.fromARGB(255, 217, 21, 7), // Цвет линии
                 ),
-                SizedBox(
-                  width: 130,
+                Expanded(
                   child: Text(
                     '$selectedAge', // Показываем выбранное число
                     style: const TextStyle(
@@ -104,7 +103,6 @@ class _WhatIsAgeHeightScreenState extends State<WhatIsAgeHeightScreen> {
               ],
             ),
           ),
-          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               context.router.push(WhatIsAgeWeightRoute());
@@ -123,7 +121,7 @@ class _WhatIsAgeHeightScreenState extends State<WhatIsAgeHeightScreen> {
               ),
             ),
           ),
-          SizedBox(height: 36),
+          SizedBox(height: 50),
         ],
       ),
     );
