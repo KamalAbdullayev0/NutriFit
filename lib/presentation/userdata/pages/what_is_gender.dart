@@ -49,14 +49,14 @@ class _WhatIsGenderScreenState extends State<WhatIsGenderScreen> {
         width: double.infinity,
         child: Column(
           children: [
-            Text(
+            const Text(
               'What is your gender?',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ...goals.map((goal) {
               return GestureDetector(
                 onTap: () => selectGoal(goal),
@@ -79,15 +79,15 @@ class _WhatIsGenderScreenState extends State<WhatIsGenderScreen> {
               );
             }).toList(),
             const SizedBox(height: 10),
-            Text(
+            const Text(
               'Your privacy is our priority.We will never',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300),
             ),
-            Text(
+            const Text(
               'share your personal information with anyone.',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300),
             ),
-            Spacer(),
+            const Spacer(),
             ElevatedButton(
               onPressed: () {
                 context.router.replaceAll([const HomeRoute()]);
@@ -109,7 +109,7 @@ class _WhatIsGenderScreenState extends State<WhatIsGenderScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
           ],
         ),
       ),

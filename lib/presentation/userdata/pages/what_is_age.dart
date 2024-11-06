@@ -23,14 +23,14 @@ class _WhatIsAgeScreenState extends State<WhatIsAgeScreen> {
       ),
       body: Column(
         children: [
-          Text(
+          const Text(
             "What's your age?",
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
             ),
           ),
-          Spacer(),
+          const Spacer(),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.5,
             child: ListWheelScrollView.useDelegate(
@@ -39,7 +39,7 @@ class _WhatIsAgeScreenState extends State<WhatIsAgeScreen> {
               // squeeze: 1.2,
               // offAxisFraction: -0.5,
               itemExtent: 70,
-              physics: FixedExtentScrollPhysics(),
+              physics: const FixedExtentScrollPhysics(),
               onSelectedItemChanged: (index) {
                 setState(() {
                   selectedAge = 12 + index;
@@ -65,7 +65,7 @@ class _WhatIsAgeScreenState extends State<WhatIsAgeScreen> {
                                 age == selectedAge ? Colors.black : Colors.grey,
                           ),
                         ),
-                        Text(
+                        const Text(
                           "  years old",
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
@@ -81,8 +81,8 @@ class _WhatIsAgeScreenState extends State<WhatIsAgeScreen> {
               ),
             ),
           ),
-          Spacer(),
-          Spacer(),
+          const Spacer(),
+          const Spacer(),
           ElevatedButton(
             onPressed: () {
               context.router.push(const WhatIsAgeHeightRoute());
@@ -102,7 +102,7 @@ class _WhatIsAgeScreenState extends State<WhatIsAgeScreen> {
               ),
             ),
           ),
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
         ],
       ),
     );

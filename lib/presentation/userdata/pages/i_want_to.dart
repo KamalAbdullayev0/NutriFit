@@ -51,14 +51,14 @@ class _IWantToScreenState extends State<IWantToScreen> {
         width: double.infinity,
         child: Column(
           children: [
-            Text(
+            const Text(
               'I want to...',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ...goals.map((goal) {
               return GestureDetector(
                 onTap: () => selectGoal(goal),
@@ -81,14 +81,14 @@ class _IWantToScreenState extends State<IWantToScreen> {
               );
             }).toList(),
             const SizedBox(height: 10),
-            Text(
+            const Text(
               'You can select only one goal',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300),
             ),
-            Spacer(),
+            const Spacer(),
             ElevatedButton(
               onPressed: () {
-                context.router.push(WhatIsAgeRoute());
+                context.router.push(const WhatIsAgeRoute());
 
                 // saveToFirestore();
               },
@@ -107,7 +107,7 @@ class _IWantToScreenState extends State<IWantToScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
           ],
         ),
       ),

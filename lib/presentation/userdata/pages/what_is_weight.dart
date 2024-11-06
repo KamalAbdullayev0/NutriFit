@@ -120,11 +120,11 @@ class _WhatIsAgeWeightScreenState extends State<WhatIsAgeWeightScreen> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          Spacer(),
+          const Spacer(),
           ElevatedButton(
             onPressed: () {
               // context.router.push(());
-              context.router.push(WhatIsGenderRoute());
+              context.router.push(const WhatIsGenderRoute());
 
               // Логика для сохранения возраста или навигации
             },
@@ -140,7 +140,7 @@ class _WhatIsAgeWeightScreenState extends State<WhatIsAgeWeightScreen> {
               ),
             ),
           ),
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
         ],
       ),
     );
