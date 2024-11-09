@@ -85,9 +85,8 @@ class ChooseFood extends StatelessWidget {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(10),
                       onTap: () {
-                        setState(() {
-                          _selectedIndex = index;
-                        });
+                        // ignore: avoid_print
+                        print('Category: ${category[index].categoryName}');
                       },
                     ),
                   ),
@@ -100,72 +99,3 @@ class ChooseFood extends StatelessWidget {
     );
   }
 }
-//   Widget _buildPickYourDiet(List<CategoryEntity> category) {
-//     return SizedBox(
-//       height: 120,
-//       child: ListView.builder(
-//         scrollDirection: Axis.horizontal,
-//         itemCount: category.length,
-//         itemBuilder: (context, index) {
-//           return Padding(
-//             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
-//             child: Stack(
-//               children: [
-//                 Container(
-//                   width: 100,
-//                   decoration: BoxDecoration(
-//                     color: Colors.white,
-//                     boxShadow: [
-//                       BoxShadow(
-//                         color: Colors.black.withOpacity(0.05),
-//                         spreadRadius: 1,
-//                         blurRadius: 10,
-//                         offset: const Offset(0, 4),
-//                       ),
-//                     ],
-//                     border: Border.all(color: Colors.black.withOpacity(0.15)),
-//                     borderRadius: BorderRadius.circular(20),
-//                   ),
-//                   clipBehavior: Clip.hardEdge,
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: [
-//                       Text(
-//                         category[index].categroyEmoji,
-//                         style: TextStyle(
-//                           fontSize: 36,
-//                           fontWeight: FontWeight.w500,
-//                         ),
-//                       ),
-//                       SizedBox(height: 5),
-//                       Text(
-//                         category[index].categoryName,
-//                         style: TextStyle(
-//                           fontSize: 16,
-//                           fontWeight: FontWeight.w500,
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//                 Positioned.fill(
-//                   child: Material(
-//                     color: Colors.transparent,
-//                     child: InkWell(
-//                       borderRadius: BorderRadius.circular(10),
-//                       onTap: () {
-//                         // setState(() {
-//                         //   _selectedIndex = index;
-//                         // });
-//                       },
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }

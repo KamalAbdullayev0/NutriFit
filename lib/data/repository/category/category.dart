@@ -5,7 +5,6 @@ import 'package:nutri_fit/service_locator.dart';
 
 
 class CategoryRepositoryImpl extends CategoryRepository {
-
   @override
   Future<Either> getCategory() async {
     return await sl<CategoryFirebaseService>().getCategory();

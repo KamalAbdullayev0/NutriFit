@@ -6,7 +6,7 @@ import 'package:nutri_fit/service_locator.dart';
 class KetoMealCubit extends Cubit<KetoMealState> {
   KetoMealCubit() : super(KetoMealLoading());
 
-  void getKetoMeals() async {
+  Future<void> getKetoMeals() async {
     final result = await sl<GetKetoMealsUseCase>().call();
     result.fold(
       (l) => emit(KetoMealFailure()),

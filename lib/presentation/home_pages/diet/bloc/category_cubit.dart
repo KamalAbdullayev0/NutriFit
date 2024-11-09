@@ -7,19 +7,15 @@ class CategoryCubit extends Cubit<CategoryState> {
   CategoryCubit() : super(CategoryLoading());
 
   Future<void> getCategory() async {
-    print("Вызов GetCategoryUseCase...");
     var result = await sl<GetCategoryUseCase>().call();
     result.fold(
       (l) {
-        print("Ошибка при получении категории: ${l.runtimeType} - $l");
         emit(CategoryFailure());
       },
       (data) {
         if (data.isNotEmpty) {
-          print("Категория содержит данные: $data");
           emit(CategorySuccess(category: data));
         } else {
-          print("Получены пустые данные для категории.");
           emit(CategoryFailure());
         }
       },

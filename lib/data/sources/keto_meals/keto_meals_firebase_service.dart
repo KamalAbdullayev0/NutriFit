@@ -14,18 +14,24 @@ class KetoMealsFirebaseServiceImpl implements KetoMealsFirebaseService {
       List<MealEntity> ketomeal = [];
       var data = await FirebaseFirestore.instance
           .collection('keto-meals')
-          .orderBy('releaseDate', descending: true)
-          .limit(5)
+          .orderBy('date', descending: true)
           .get();
+
+      // Log the raw data to see if it's empty or malformed
+      print('Fetched data: ${data.docs.length} items');
 
       for (var element in data.docs) {
         var ketomealModel = MealModel.fromJson(element.data());
+        var data = element.data();
+        print('Fetched data: $data');
         ketomealModel.ketomealId = element.reference.id;
         ketomeal.add(ketomealModel.toEntity());
       }
+
       return Right(ketomeal);
     } catch (e) {
-      return const Left('An error occurred');
+      print('Error fetching keto meals: ${e.toString()}');
+      return Left(('An error occurred: ${e.toString()}'));
     }
   }
 }

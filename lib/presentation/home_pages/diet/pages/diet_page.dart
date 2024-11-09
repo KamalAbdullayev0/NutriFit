@@ -10,7 +10,8 @@ import 'package:nutri_fit/presentation/home_pages/diet/bloc/category_cubit.dart'
 import 'package:nutri_fit/presentation/home_pages/diet/bloc/category_state.dart';
 import 'package:nutri_fit/presentation/home_pages/diet/bloc/keto_meal_cubit.dart';
 import 'package:nutri_fit/presentation/home_pages/diet/bloc/keto_meal_state.dart';
-import 'package:nutri_fit/presentation/home_pages/diet/widgets/pick_your_diet.dart';
+import 'package:nutri_fit/presentation/home_pages/diet/widgets/choose_food.dart';
+import 'package:nutri_fit/presentation/home_pages/diet/widgets/meals_widget.dart';
 
 @RoutePage()
 class DietPageWidget extends StatefulWidget {
@@ -53,14 +54,15 @@ class _SportPageWidgetState extends State<DietPageWidget> {
     int currentIndex = 0;
     return MultiBlocProvider(
       providers: [
-        // BlocProvider<KetoMealCubit>(
-        //   create: (_) => KetoMealCubit()..getKetoMeals(),
-        // ),
+        BlocProvider<KetoMealCubit>(
+          create: (_) => KetoMealCubit()..getKetoMeals(),
+        ),
         BlocProvider(
           create: (_) => CategoryCubit()..getCategory(),
         ),
       ],
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: const RootAppBar(
           imagePath: AppImages.ozun,
         ),
@@ -154,7 +156,9 @@ class _SportPageWidgetState extends State<DietPageWidget> {
                   ),
                 ),
               ),
-              ChooseFood(),
+              const ChooseFood(),
+              const SizedBox(height: 20),
+              const MealsVertical(),
 
               // PickYourDiet(),
               // _buildAllMeals(context),
@@ -164,74 +168,6 @@ class _SportPageWidgetState extends State<DietPageWidget> {
       ),
     );
   }
-
-  // Widget _buildPickYourDiet(List<CategoryEntity> category) {
-  //   return SizedBox(
-  //     child: ListView.builder(
-  //       scrollDirection: Axis.horizontal,
-  //       itemCount: category.length,
-  //       itemBuilder: (context, index) {
-  //         return Padding(
-  //           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
-  //           child: Stack(
-  //             children: [
-  //               Container(
-  //                 width: 100,
-  //                 decoration: BoxDecoration(
-  //                   color: Colors.white,
-  //                   boxShadow: [
-  //                     BoxShadow(
-  //                       color: Colors.black.withOpacity(0.05),
-  //                       spreadRadius: 1,
-  //                       blurRadius: 10,
-  //                       offset: const Offset(0, 4),
-  //                     ),
-  //                   ],
-  //                   border: Border.all(color: Colors.black.withOpacity(0.15)),
-  //                   borderRadius: BorderRadius.circular(20),
-  //                 ),
-  //                 clipBehavior: Clip.hardEdge,
-  //                 child: Column(
-  //                   mainAxisAlignment: MainAxisAlignment.center,
-  //                   children: [
-  //                     Text(
-  //                       category[index].categroyEmoji,
-  //                       style: TextStyle(
-  //                         fontSize: 36,
-  //                         fontWeight: FontWeight.w500,
-  //                       ),
-  //                     ),
-  //                     SizedBox(height: 5),
-  //                     Text(
-  //                       category[index].categoryName,
-  //                       style: TextStyle(
-  //                         fontSize: 16,
-  //                         fontWeight: FontWeight.w500,
-  //                       ),
-  //                     ),
-  //                   ],
-  //                 ),
-  //               ),
-  //               // Positioned.fill(
-  //               //   child: Material(
-  //               //     color: Colors.transparent,
-  //               //     child: InkWell(
-  //               //       borderRadius: BorderRadius.circular(10),
-  //               //       onTap: () {
-  //               //         // setState(() {
-  //               //         //   _selectedIndex = index;
-  //               //         // });
-  //               //       },
-  //               //     ),
-  //               //   ),
-  //               // ),
-  //             ],
-  //           ),
-  //         );
-  //       },
-  //     ),
-  //   );
-  // }
 
   // Widget _buildAllMeals(BuildContext context) {
   //   return SizedBox(
@@ -310,104 +246,6 @@ class _SportPageWidgetState extends State<DietPageWidget> {
   //           );
   //         },
   //       ),
-  //     ),
-  //   );
-  // }
-
-  // Widget _MealsVertical(BuildContext context) {
-  //   return SizedBox(
-  //     height: 300, // Задаем высоту для контейнера
-  //     child: ListView.builder(
-  //       scrollDirection: Axis.horizontal,
-  //       itemCount: meals.length,
-  //       itemBuilder: (context, index) {
-  //         final isSelected = index == _selectedIndex;
-  //         return Padding(
-  //           padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
-  //           child: Stack(
-  //             children: [
-  //               Container(
-  //                 width: 240,
-  //                 decoration: BoxDecoration(
-  //                   color: meals[index]['color'] ?? Colors.white,
-  //                   boxShadow: [
-  //                     BoxShadow(
-  //                       color: Colors.black.withOpacity(0.05),
-  //                       spreadRadius: 0,
-  //                       blurRadius: 10,
-  //                       offset: const Offset(1, 1),
-  //                     ),
-  //                   ],
-  //                   border: Border.all(color: Colors.black.withOpacity(0.08)),
-  //                   borderRadius: BorderRadius.circular(10),
-  //                 ),
-  //                 clipBehavior: Clip.hardEdge,
-  //                 child: Column(
-  //                   mainAxisAlignment: MainAxisAlignment.center,
-  //                   children: [
-  //                     meals[index]['images'] != null
-  //                         ? Image.asset(
-  //                             meals[index]['images'],
-  //                             width: 240,
-  //                             height: 240,
-  //                             fit: BoxFit.cover,
-  //                           )
-  //                         : Container(),
-  //                     Container(
-  //                       width: 240,
-  //                       height: 58,
-  //                       color: Colors.white,
-  //                       child: Column(
-  //                         mainAxisAlignment: MainAxisAlignment.center,
-  //                         children: [
-  //                           Text(
-  //                             meals[index]['yemek_adi'] ?? 'Default Meal',
-  //                             style: TextStyle(
-  //                               color: Colors.black,
-  //                               fontSize: 20,
-  //                               fontWeight: FontWeight.w500,
-  //                             ),
-  //                           ),
-  //                         ],
-  //                       ),
-  //                     ),
-
-  //                     // Text(
-  //                     //   meals[index]['emoji'] ?? '🍴',
-  //                     //   style: TextStyle(
-  //                     //     fontSize: 36,
-  //                     //     fontWeight: FontWeight.w500,
-  //                     //   ),
-  //                     // ),
-  //                     // SizedBox(height: 5),
-  //                     // Text(
-  //                     //   meals[index]['text'] ?? AppImages.sekil1,
-  //                     //   style: TextStyle(
-  //                     //     color: isSelected ? Colors.red : Colors.black,
-  //                     //     fontSize: 16,
-  //                     //     fontWeight: FontWeight.w500,
-  //                     //   ),
-  //                     // ),
-  //                   ],
-  //                 ),
-  //               ),
-  //               // Positioned.fill(
-  //               //   child: Material(
-  //               //     color: Colors.transparent,
-  //               //     child: InkWell(
-  //               //       borderRadius: BorderRadius.circular(10),
-  //               //       onTap: () {
-  //               //         setState(() {
-  //               //           _selectedIndex = index;
-  //               //         });
-  //               //       },
-  //               //     ),
-  //               //   ),
-  //               // ),
-  //             ],
-  //           ),
-  //         );
-  //       },
   //     ),
   //   );
   // }
