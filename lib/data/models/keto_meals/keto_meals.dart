@@ -10,6 +10,7 @@ class MealModel {
   num? protein;
   String? category;
   Timestamp? date;
+  String? ketomealId;
 
   MealModel({
     required this.name,
@@ -20,6 +21,7 @@ class MealModel {
     required this.protein,
     required this.category,
     required this.date,
+    required this.ketomealId,
   });
 
   // Метод для инициализации из JSON-данных Firestore
@@ -36,7 +38,6 @@ class MealModel {
 }
 
 extension MealModelX on MealModel {
-  // Метод для преобразования в сущность MealEntity
   MealEntity toEntity() {
     return MealEntity(
       name: name!,
@@ -47,6 +48,7 @@ extension MealModelX on MealModel {
       protein: protein!,
       category: category!,
       date: date!,
+      ketomealId: ketomealId!,
     );
   }
 }

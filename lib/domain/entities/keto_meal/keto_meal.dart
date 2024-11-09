@@ -9,6 +9,7 @@ class MealEntity {
   final num protein;
   final String category;
   final Timestamp date;
+  final String ketomealId;
 
   MealEntity({
     required this.name,
@@ -19,5 +20,6 @@ class MealEntity {
     required this.protein,
     required this.category,
     required this.date,
+    required this.ketomealId,
   });
 }

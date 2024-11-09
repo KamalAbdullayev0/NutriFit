@@ -17,7 +17,7 @@ import 'package:nutri_fit/presentation/home_pages/diet/pages/diet_page.dart'
     as _i1;
 import 'package:nutri_fit/presentation/home_pages/location/location_page.dart'
     as _i5;
-import 'package:nutri_fit/presentation/home_pages/profile/profil_page.dart'
+import 'package:nutri_fit/presentation/home_pages/profile/pages/profil_page.dart'
     as _i7;
 import 'package:nutri_fit/presentation/home_pages/sport/pages/sport_widget.dart'
     as _i10;
