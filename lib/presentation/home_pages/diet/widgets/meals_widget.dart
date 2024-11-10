@@ -64,7 +64,7 @@ class MealsVertical extends StatelessWidget {
                       Align(
                         child: Container(
                           width: 260,
-                          height: 170,
+                          height: 180,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
@@ -76,7 +76,7 @@ class MealsVertical extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 6),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Text(
@@ -88,7 +88,6 @@ class MealsVertical extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 8),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Row(

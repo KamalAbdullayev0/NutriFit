@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutri_fit/domain/entities/category/category.dart';
 import 'package:nutri_fit/presentation/home_pages/diet/bloc/category_cubit.dart';
 import 'package:nutri_fit/presentation/home_pages/diet/bloc/category_state.dart';
+import 'package:nutri_fit/presentation/home_pages/diet/bloc/keto_meal_cubit.dart';
 
 class ChooseFood extends StatelessWidget {
   const ChooseFood({super.key});
@@ -85,8 +86,8 @@ class ChooseFood extends StatelessWidget {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(10),
                       onTap: () {
-                        // ignore: avoid_print
-                        print('Category: ${category[index].categoryName}');
+                        context.read<KetoMealCubit>().fetchMealsForCategory(
+                            category[index].categoryName);
                       },
                     ),
                   ),

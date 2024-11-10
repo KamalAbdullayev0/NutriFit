@@ -17,9 +17,6 @@ class KetoMealsFirebaseServiceImpl implements KetoMealsFirebaseService {
           .orderBy('date', descending: true)
           .get();
 
-      // Log the raw data to see if it's empty or malformed
-      print('Fetched data: ${data.docs.length} items');
-
       for (var element in data.docs) {
         var ketomealModel = MealModel.fromJson(element.data());
         var data = element.data();

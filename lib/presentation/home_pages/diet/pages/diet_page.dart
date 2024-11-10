@@ -5,11 +5,8 @@ import 'package:nutri_fit/common/widgets/macro_info_widget/macro_info_widget.dar
 import 'package:nutri_fit/common/widgets/progress_indicator/progress_indicator.dart';
 import 'package:nutri_fit/common/widgets/root_appbar/root_appbar.dart';
 import 'package:nutri_fit/core/configs/assets/app_images.dart';
-import 'package:nutri_fit/domain/entities/category/category.dart';
 import 'package:nutri_fit/presentation/home_pages/diet/bloc/category_cubit.dart';
-import 'package:nutri_fit/presentation/home_pages/diet/bloc/category_state.dart';
 import 'package:nutri_fit/presentation/home_pages/diet/bloc/keto_meal_cubit.dart';
-import 'package:nutri_fit/presentation/home_pages/diet/bloc/keto_meal_state.dart';
 import 'package:nutri_fit/presentation/home_pages/diet/widgets/choose_food.dart';
 import 'package:nutri_fit/presentation/home_pages/diet/widgets/meals_widget.dart';
 
@@ -157,11 +154,20 @@ class _SportPageWidgetState extends State<DietPageWidget> {
                 ),
               ),
               const ChooseFood(),
-              const SizedBox(height: 20),
+              const Padding(
+                padding: EdgeInsets.only(left: 16, top: 8, bottom: 4),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Today's meals",
+                    style: TextStyle(
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 3, 65, 115)),
+                  ),
+                ),
+              ),
               const MealsVertical(),
-
-              // PickYourDiet(),
-              // _buildAllMeals(context),
             ],
           ),
         ),
