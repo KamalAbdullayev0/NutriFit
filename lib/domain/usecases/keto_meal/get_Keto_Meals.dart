@@ -6,6 +6,6 @@ import 'package:nutri_fit/service_locator.dart';
 class GetKetoMealsUseCase implements UseCase<Either, dynamic> {
   @override
   Future<Either> call({params}) async {
-    return await sl<KetoMealRepository>().getKetoMeals();
+    return await sl<KetoMealRepository>().getKetoMeals(category: params);
   }
 }

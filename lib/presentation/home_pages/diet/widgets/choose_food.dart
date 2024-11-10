@@ -19,7 +19,7 @@ class ChooseFood extends StatelessWidget {
           return _chooseFood(state.category);
         }
         if (state is CategoryFailure) {
-          return Center(
+          return const Center(
             child: Text(
               'Пожалуйста, попробуйте позже',
               style: TextStyle(color: Colors.red, fontSize: 20),
@@ -86,8 +86,9 @@ class ChooseFood extends StatelessWidget {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(10),
                       onTap: () {
-                        context.read<KetoMealCubit>().fetchMealsForCategory(
-                            category[index].categoryName);
+                        context.read<KetoMealCubit>().getKetoMeals(
+                              category: category[index].categoryName,
+                            );
                       },
                     ),
                   ),

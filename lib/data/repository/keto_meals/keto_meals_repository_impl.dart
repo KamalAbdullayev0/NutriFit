@@ -5,7 +5,16 @@ import 'package:nutri_fit/service_locator.dart';
 
 class KetoMealsRepositoryImpl extends KetoMealRepository {
   @override
-  Future<Either> getKetoMeals() async {
-    return await sl<KetoMealsFirebaseService>().getKetoMeals();
+  Future<Either> getKetoMeals({String? category}) async {
+    try {
+      if (category != null) {
+        return await sl<KetoMealsFirebaseService>()
+            .getKetoMeals(category: category);
+      } else {
+        return await sl<KetoMealsFirebaseService>().getKetoMeals();
+      }
+    } catch (error) {
+      return Left(error);
+    }
   }
 }
