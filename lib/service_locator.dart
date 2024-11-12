@@ -8,7 +8,6 @@ import 'package:nutri_fit/data/sources/keto_meals/keto_meals_firebase_service.da
 import 'package:nutri_fit/domain/repository/auth/auth.dart';
 import 'package:nutri_fit/domain/repository/category/category.dart';
 import 'package:nutri_fit/domain/repository/keto_meal/keto_meal.dart';
-import 'package:nutri_fit/domain/usecases/auth/get_user.dart';
 import 'package:nutri_fit/domain/usecases/auth/signin.dart';
 import 'package:nutri_fit/domain/usecases/auth/signup.dart';
 import 'package:nutri_fit/domain/usecases/category/get_category.dart';
@@ -25,11 +24,7 @@ Future<void> initializeDependencies() async {
 
   sl.registerSingleton<SigninUseCase>(SigninUseCase());
 
-
   // User
-
-  sl.registerSingleton<GetUserUseCase>(GetUserUseCase());
-
 
   // Keto Meal
 
@@ -37,8 +32,8 @@ Future<void> initializeDependencies() async {
 
   sl.registerSingleton<KetoMealRepository>(KetoMealsRepositoryImpl());
 
-  sl.registerSingleton<KetoMealsFirebaseService>(KetoMealsFirebaseServiceImpl());
-
+  sl.registerSingleton<KetoMealsFirebaseService>(
+      KetoMealsFirebaseServiceImpl());
 
   // Category
 

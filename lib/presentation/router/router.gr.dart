@@ -24,6 +24,7 @@ import 'package:nutri_fit/presentation/home_pages/sport/pages/sport_widget.dart'
 import 'package:nutri_fit/presentation/intro_sign/pages/get_started.dart'
     as _i2;
 import 'package:nutri_fit/presentation/splash/pages/splash.dart' as _i9;
+import 'package:nutri_fit/presentation/userdata/bloc/user_rxdart.dart';
 import 'package:nutri_fit/presentation/userdata/pages/i_want_to.dart' as _i4;
 import 'package:nutri_fit/presentation/userdata/pages/what_is_age.dart' as _i12;
 import 'package:nutri_fit/presentation/userdata/pages/what_is_gender.dart'
@@ -120,7 +121,9 @@ class IWantToRoute extends _i15.PageRouteInfo<void> {
   static _i15.PageInfo page = _i15.PageInfo(
     name,
     builder: (data) {
-      return const _i4.IWantToScreen();
+      return _i4.IWantToScreen(
+        userBloc: UserBloc(),
+      );
     },
   );
 }
@@ -253,7 +256,7 @@ class WhatIsAgeHeightRoute extends _i15.PageRouteInfo<void> {
   static _i15.PageInfo page = _i15.PageInfo(
     name,
     builder: (data) {
-      return _i11.WhatIsAgeHeightScreen();
+      return _i11.WhatIsAgeHeightScreen(userBloc: UserBloc());
     },
   );
 }
@@ -272,7 +275,7 @@ class WhatIsAgeRoute extends _i15.PageRouteInfo<void> {
   static _i15.PageInfo page = _i15.PageInfo(
     name,
     builder: (data) {
-      return _i12.WhatIsAgeScreen();
+      return _i12.WhatIsAgeScreenWrapper(userBloc: UserBloc());
     },
   );
 }
@@ -291,7 +294,7 @@ class WhatIsAgeWeightRoute extends _i15.PageRouteInfo<void> {
   static _i15.PageInfo page = _i15.PageInfo(
     name,
     builder: (data) {
-      return _i13.WhatIsAgeWeightScreen();
+      return _i13.WhatIsAgeWeightScreen(userBloc: UserBloc());
     },
   );
 }
@@ -310,7 +313,7 @@ class WhatIsGenderRoute extends _i15.PageRouteInfo<void> {
   static _i15.PageInfo page = _i15.PageInfo(
     name,
     builder: (data) {
-      return const _i14.WhatIsGenderScreen();
+      return _i14.WhatIsGenderScreen(userBloc: UserBloc());
     },
   );
 }

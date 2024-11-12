@@ -1,17 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:nutri_fit/core/configs/constants/app_urls.dart';
-
 import 'package:nutri_fit/data/models/auth/create_user_req.dart';
 import 'package:nutri_fit/data/models/auth/signin_user_req.dart';
-import 'package:nutri_fit/data/models/auth/user.dart';
-import 'package:nutri_fit/domain/entities/auth/user.dart';
 
 abstract class AuthFirebaseService {
   Future<Either> signup(CreateUserReq createUserReq);
   Future<Either> signin(SigninUserReq signinUserReq);
-  Future<Either> getUser();
 }
 
 class AuthFirebaseServiceImpl implements AuthFirebaseService {
@@ -63,7 +58,6 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
         print(
             'User data written to Firestore: ${data.user?.uid}'); // Принт для проверки записи в Firestore
       }
-
       return const Right('Signup successful');
     } on FirebaseException catch (e) {
       String message = '';
@@ -76,27 +70,6 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
       }
       print('Signup error: $message'); // Принт для проверки ошибок регистрации
       return Left(message);
-    }
-  }
-
-  @override
-  Future<Either> getUser() async {
-    try {
-      FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-      FirebaseFirestore firbaseFirestore = FirebaseFirestore.instance;
-
-      var user = await firbaseFirestore
-          .collection('Users')
-          .doc(firebaseAuth.currentUser?.uid)
-          .get();
-
-      UserModel userModel = UserModel.fromJson(user.data()!);
-      userModel.imageURL =
-          firebaseAuth.currentUser?.photoURL ?? AppUrls.defaultImage;
-      UserEntity userEntity = userModel.toEntity();
-      return Right(userEntity);
-    } catch (e) {
-      return const Left('An error occurred while getting user data');
     }
   }
 }

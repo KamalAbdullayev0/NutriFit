@@ -25,22 +25,16 @@ class _SportPageWidgetState extends State<DietPageWidget> {
   final List<Map<String, dynamic>> cards = [
     {
       'color': const Color.fromARGB(255, 217, 180, 85),
-      'number': 'Take the medicine',
-      'type': '3 times a day',
       'progress': 0.33,
       'icon': Icons.medication,
     },
     {
       'color': const Color.fromARGB(255, 72, 128, 184),
-      'number': 'Music lessons',
-      'type': 'Every Monday',
       'progress': 0.1,
       'icon': Icons.music_note,
     },
     {
       'color': const Color.fromARGB(255, 173, 105, 199),
-      'number': 'Exercise',
-      'type': '1 hour daily',
       'progress': 0.5,
       'icon': Icons.fitness_center,
     },
@@ -106,7 +100,7 @@ class _SportPageWidgetState extends State<DietPageWidget> {
                                   children: [
                                     MacroInfoWidget(
                                       label: 'Protein',
-                                      progress: 0.4,
+                                      progress: 0.5,
                                       value: '31 / 54gr',
                                     ),
                                     MacroInfoWidget(
@@ -129,7 +123,7 @@ class _SportPageWidgetState extends State<DietPageWidget> {
                                     ProgressIndicatorWidget(
                                       label: 'Calori',
                                       progress: '234',
-                                      value: 0.4,
+                                      value: 0.6,
                                       height: 120,
                                     ),
                                   ],
@@ -174,85 +168,4 @@ class _SportPageWidgetState extends State<DietPageWidget> {
       ),
     );
   }
-
-  // Widget _buildAllMeals(BuildContext context) {
-  //   return SizedBox(
-  //     height: 2000,
-  //     child: SizedBox(
-  //       child: ListView.builder(
-  //         shrinkWrap: true,
-  //         physics: const NeverScrollableScrollPhysics(),
-  //         scrollDirection: Axis.vertical,
-  //         itemCount: meals.length,
-  //         itemBuilder: (context, index) {
-  //           return Padding(
-  //             padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-  //             child: Container(
-  //               width: double.infinity,
-  //               height: 400,
-  //               color: const Color.fromARGB(
-  //                   249, 250, 251, 255), //rgba(249,250,251,255)
-  //               child: Column(
-  //                 children: [
-  //                   Padding(
-  //                     padding:
-  //                         const EdgeInsets.only(left: 16, top: 16, right: 16),
-  //                     child: Row(
-  //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                       children: [
-  //                         Row(
-  //                           children: [
-  //                             Text(
-  //                               meals[index]['emoji'] ?? '🍴',
-  //                               style: TextStyle(
-  //                                 fontSize: 36,
-  //                               ),
-  //                             ),
-  //                             SizedBox(
-  //                               width: 10,
-  //                             ),
-  //                             Text(
-  //                               meals[index]['text'] ?? 'Default Meal',
-  //                               style: TextStyle(
-  //                                 color: Colors.black,
-  //                                 fontSize: 20,
-  //                                 fontWeight: FontWeight.w500,
-  //                               ),
-  //                             ),
-  //                           ],
-  //                         ),
-  //                         Text(
-  //                           'More',
-  //                           style: TextStyle(
-  //                             color: Colors.blue,
-  //                             fontSize: 20,
-  //                             fontWeight: FontWeight.w500,
-  //                           ),
-  //                         ),
-  //                       ],
-  //                     ),
-  //                   ),
-  //                   Column(
-  //                     crossAxisAlignment: CrossAxisAlignment.start,
-  //                     children: [
-  //                       Padding(
-  //                         padding: const EdgeInsets.all(10),
-  //                         child: Column(
-  //                           crossAxisAlignment: CrossAxisAlignment.start,
-  //                           children: [
-  //                             _MealsVertical(context),
-  //                           ],
-  //                         ),
-  //                       ),
-  //                     ],
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //           );
-  //         },
-  //       ),
-  //     ),
-  //   );
-  // }
 }

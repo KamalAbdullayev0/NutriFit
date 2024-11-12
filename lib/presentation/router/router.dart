@@ -9,6 +9,8 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: GetStartedRoute.page, path: '/get-started'),
         AutoRoute(page: LoginRoute.page, path: '/get-started/login'),
         AutoRoute(page: RegisterRoute.page, path: '/get-started/register'),
+
+        // After Register
         AutoRoute(
             page: IWantToRoute.page, path: '/get-started/register/iwantto'),
         AutoRoute(
@@ -17,13 +19,14 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
             page: WhatIsAgeHeightRoute.page,
             path: '/get-started/register/iwantto/IsAge/IsHeight'),
-            AutoRoute(
+        AutoRoute(
             page: WhatIsAgeWeightRoute.page,
             path: '/get-started/register/iwantto/IsAge/IsHeight/IsWeight'),
-            AutoRoute(
+        AutoRoute(
             page: WhatIsGenderRoute.page,
-            path: '/get-started/register/iwantto/IsAge/IsHeight/IsWeight/IsGender'),
-            
+            path:
+                '/get-started/register/iwantto/IsAge/IsHeight/IsWeight/IsGender'),
+
         AutoRoute(
           page: HomeRoute.page,
           path: '/home',
