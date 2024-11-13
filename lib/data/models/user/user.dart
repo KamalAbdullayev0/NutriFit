@@ -3,7 +3,7 @@ import 'package:nutri_fit/domain/entities/user/user.dart';
 class UserInfoModel {
   String? name;
   String? email;
-  String? want;
+  String? goal;
   num? age;
   num? height;
   num? weight;
@@ -12,26 +12,34 @@ class UserInfoModel {
   num? carbs;
   num? fat;
   num? protein;
+  num? necessaryCalories;
+  num? necessaryCarbs;
+  num? necessaryFat;
+  num? necessaryProtein;
 
   UserInfoModel({
-    required this.name,
-    required this.email,
-    required this.want,
-    required this.age,
-    required this.height,
-    required this.weight,
-    required this.gender,
-    required this.calories,
-    required this.carbs,
-    required this.fat,
-    required this.protein,
+    this.name,
+    this.email,
+    this.goal,
+    this.age,
+    this.height,
+    this.weight,
+    this.gender,
+    this.calories,
+    this.carbs,
+    this.fat,
+    this.protein,
+    this.necessaryCalories,
+    this.necessaryCarbs,
+    this.necessaryFat,
+    this.necessaryProtein,
   });
 
-  // Метод для инициализации объекта из JSON-данных Firestore
+  // Initialize object from Firestore JSON data
   UserInfoModel.fromJson(Map<String, dynamic> data) {
     name = data['name'];
     email = data['email'];
-    want = data['want'];
+    goal = data['goal'];
     age = data['age'];
     height = data['height'];
     weight = data['weight'];
@@ -40,14 +48,18 @@ class UserInfoModel {
     carbs = data['carbs'];
     fat = data['fat'];
     protein = data['protein'];
+    necessaryCalories = data['NecessaryCalories'];
+    necessaryCarbs = data['NecessaryCarbs'];
+    necessaryFat = data['NecessaryFat'];
+    necessaryProtein = data['NecessaryProtein'];
   }
 
-  // Метод для конвертации модели в Map для записи в Firestore
+  // Convert model to Map for Firestore storage
   Map<String, dynamic> toMap() {
     return {
       'name': name,
       'email': email,
-      'want': want,
+      'goal': goal,
       'age': age,
       'height': height,
       'weight': weight,
@@ -56,6 +68,10 @@ class UserInfoModel {
       'carbs': carbs,
       'fat': fat,
       'protein': protein,
+      'NecessaryCalories': necessaryCalories,
+      'NecessaryCarbs': necessaryCarbs,
+      'NecessaryFat': necessaryFat,
+      'NecessaryProtein': necessaryProtein,
     };
   }
 }
@@ -63,17 +79,21 @@ class UserInfoModel {
 extension UserInfoModelX on UserInfoModel {
   UserInfoEntity toEntity() {
     return UserInfoEntity(
-      name: name!,
-      email: email!,
-      want: want!,
-      age: age!,
-      height: height!,
-      weight: weight!,
-      gender: gender!,
-      calories: calories!,
-      carbs: carbs!,
-      fat: fat!,
-      protein: protein!,
+      name: name,
+      email: email,
+      goal: goal,
+      age: age,
+      height: height,
+      weight: weight,
+      gender: gender,
+      calories: calories,
+      carbs: carbs,
+      fat: fat,
+      protein: protein,
+      necessaryCalories: necessaryCalories,
+      necessaryCarbs: necessaryCarbs,
+      necessaryFat: necessaryFat,
+      necessaryProtein: necessaryProtein,
     );
   }
 }

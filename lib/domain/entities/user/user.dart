@@ -1,27 +1,36 @@
 class UserInfoEntity {
-  String name;
-  String email;
-  String want;
-  num age;
-  num height;
-  num weight;
-  String gender;
-  num calories;
-  num carbs;
-  num fat;
-  num protein;
+  String? name;
+  String? email;
+  String? goal;
+  num? age;
+  num? height;
+  num? weight;
+  String? gender;
+  num? calories;
+  num? carbs;
+  num? fat;
+  num? protein;
+  num? necessaryCalories;
+  num? necessaryCarbs;
+  num? necessaryFat;
+  num? necessaryProtein;
 
   UserInfoEntity({
-    required this.name,
-    required this.email,
-    required this.want,
-    required this.age,
-    required this.height,
-    required this.weight,
-    required this.gender,
-    required this.calories,
-    required this.carbs,
-    required this.fat,
-    required this.protein,
+   this.name,
+     this.email,
+      this.goal,
+      this.age,
+      this.height,
+      this.weight,
+      this.gender,
+      this.calories,
+      this.carbs,
+      this.fat,
+      this.protein,
+      this.necessaryCalories,
+      this.necessaryCarbs,
+      this.necessaryFat,
+      this.necessaryProtein
+  
   });
 }

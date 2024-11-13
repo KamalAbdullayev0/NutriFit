@@ -6,8 +6,8 @@ class UserBloc {
   final goalController = BehaviorSubject<String>.seeded('');
   final ageController = BehaviorSubject<int>.seeded(30);
   final genderController = BehaviorSubject<String>.seeded('');
-  final heightController = BehaviorSubject<int>.seeded(0);
-  final weightController = BehaviorSubject<int>.seeded(0);
+  final heightController = BehaviorSubject<int>.seeded(120);
+  final weightController = BehaviorSubject<int>.seeded(40);
 
   void goalSet(String value) {
     goalController.sink.add(value);

@@ -5,13 +5,17 @@ class MacroInfoWidget extends StatelessWidget {
   final double progress;
   final String value;
   final double height;
+  final double width;
+  final Color color;
 
   const MacroInfoWidget({
     super.key,
     required this.label,
     required this.progress,
     required this.value,
-    this.height = 4.0,
+    this.height = 7,
+    this.width = 80,
+    this.color = Colors.white,
   });
 
   @override
@@ -19,15 +23,15 @@ class MacroInfoWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: const TextStyle(color: Colors.white)),
+        Text(label, style: const TextStyle(color: Colors.white, fontSize: 16)),
         const SizedBox(height: 4),
         SizedBox(
           height: height,
-          width: 80,
+          width: width,
           child: LinearProgressIndicator(
             value: progress,
             backgroundColor: Colors.white24,
-            color: Colors.white,
+            color: color,
           ),
         ),
         const SizedBox(height: 4),
