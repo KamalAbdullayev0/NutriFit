@@ -3,6 +3,7 @@ import 'package:nutri_fit/domain/entities/user/user.dart';
 class UserInfoModel {
   String? name;
   String? email;
+  String? uid;
   String? goal;
   num? age;
   num? height;
@@ -20,6 +21,7 @@ class UserInfoModel {
   UserInfoModel({
     this.name,
     this.email,
+    this.uid,
     this.goal,
     this.age,
     this.height,
@@ -39,6 +41,7 @@ class UserInfoModel {
   UserInfoModel.fromJson(Map<String, dynamic> data) {
     name = data['name'];
     email = data['email'];
+    uid = data['uid'];
     goal = data['goal'];
     age = data['age'];
     height = data['height'];
@@ -59,6 +62,7 @@ class UserInfoModel {
     return {
       'name': name,
       'email': email,
+      'uid': uid,
       'goal': goal,
       'age': age,
       'height': height,
@@ -81,6 +85,7 @@ extension UserInfoModelX on UserInfoModel {
     return UserInfoEntity(
       name: name,
       email: email,
+      uid: uid,
       goal: goal,
       age: age,
       height: height,

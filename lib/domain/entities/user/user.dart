@@ -1,6 +1,7 @@
 class UserInfoEntity {
   String? name;
   String? email;
+  String? uid;
   String? goal;
   num? age;
   num? height;
@@ -15,9 +16,10 @@ class UserInfoEntity {
   num? necessaryFat;
   num? necessaryProtein;
 
-  UserInfoEntity({
-   this.name,
-     this.email,
+  UserInfoEntity(
+      {this.name,
+      this.email,
+      this.uid,
       this.goal,
       this.age,
       this.height,
@@ -30,7 +32,5 @@ class UserInfoEntity {
       this.necessaryCalories,
       this.necessaryCarbs,
       this.necessaryFat,
-      this.necessaryProtein
-  
-  });
+      this.necessaryProtein});
 }

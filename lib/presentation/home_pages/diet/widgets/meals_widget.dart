@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:nutri_fit/core/configs/constants/app_urls.dart';
 import 'package:nutri_fit/domain/entities/keto_meal/keto_meal.dart';
+import 'package:nutri_fit/presentation/home_pages/diet/bloc/add_meal_cubit.dart';
+import 'package:nutri_fit/presentation/home_pages/diet/bloc/add_meal_state.dart';
 import 'package:nutri_fit/presentation/home_pages/diet/bloc/keto_meal_cubit.dart';
 import 'package:nutri_fit/presentation/home_pages/diet/bloc/keto_meal_state.dart';
+import 'package:nutri_fit/presentation/home_pages/diet/bloc/user_rx.dart';
 
 class MealsVertical extends StatelessWidget {
   const MealsVertical({super.key});
@@ -21,7 +25,7 @@ class MealsVertical extends StatelessWidget {
         if (state is KetoMealFailure) {
           return Center(
             child: Text(
-              'Basqa vaxti yoxlayin',
+              'Please try again later',
               style: TextStyle(color: Colors.red, fontSize: 20),
             ),
           );
@@ -32,6 +36,7 @@ class MealsVertical extends StatelessWidget {
   }
 
   Widget _meals(List<MealEntity> meals) {
+    final userController = GetIt.I<UserController>();
     return SizedBox(
       height: 260,
       child: ListView.builder(
@@ -61,17 +66,15 @@ class MealsVertical extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Align(
-                        child: Container(
-                          width: 260,
-                          height: 180,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                '${AppUrls.mealImageFireStorage}${Uri.encodeComponent(meals[index].name1.trim())}.jpg?${AppUrls.mediaAlt}',
-                              ),
+                      Container(
+                        width: 260,
+                        height: 180,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                              '${AppUrls.mealImageFireStorage}${Uri.encodeComponent(meals[index].name1.trim())}.jpg?${AppUrls.mediaAlt}',
                             ),
                           ),
                         ),
@@ -108,7 +111,38 @@ class MealsVertical extends StatelessWidget {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(10),
                       onTap: () {
-                        print('ad: ${meals[index].name1}');
+                        BlocBuilder<AddMealCubit, AddMealState>(
+                          bloc: GetIt.I.get<AddMealCubit>()
+                            ..addMeal(meals[index]),
+                          builder: (context, state) {
+                            print("KetoMealCubit State: $state");
+                            if (state is AddMealLoading) {
+                              return const Center(
+                                  child: CircularProgressIndicator());
+                            }
+                            if (state is AddMealSuccess) {
+                              print("Salam ${meals[index].name1}");
+                              context
+                                  .read<AddMealCubit>()
+                                  .addMeal(meals[index]);
+                            }
+
+                            if (state is AddMealFailure) {
+                              return const Center(
+                                child: Text(
+                                  'Please try again later',
+                                  style: TextStyle(
+                                      color: Colors.red, fontSize: 20),
+                                ),
+                              );
+                            }
+                            return Container();
+                          },
+                        );
+                        userController.incrementCarbs(meals[index].carbs);
+                        userController.incrementFat(meals[index].fat);
+                        userController.incrementCalories(meals[index].calories);
+                        userController.incrementProtein(meals[index].protein);
                       },
                     ),
                   ),

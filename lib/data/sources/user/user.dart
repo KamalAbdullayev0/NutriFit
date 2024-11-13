@@ -21,6 +21,7 @@ class UserDataRepositoryFirebaseServiceImpl
       }
 
       String uId = userAuth.uid;
+
       var user = await firbaseFirestore.collection('Users').doc(uId).get();
 
       if (user.exists) {

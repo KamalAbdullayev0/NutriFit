@@ -32,10 +32,10 @@ class RootAppBar extends StatelessWidget implements PreferredSizeWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'HI! $userName',
+                      'Hi! $userName',
                       style: const TextStyle(
                         fontSize: 24,
-                        color: Color.fromARGB(255, 1, 66, 98),
+                        color: Color.fromARGB(255, 0, 0, 0),
                         fontWeight: FontWeight.bold,
                       ),
                     ),

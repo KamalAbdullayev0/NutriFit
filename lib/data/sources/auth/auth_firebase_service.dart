@@ -53,6 +53,7 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
             .set({
           'name': createUserReq.fullName,
           'email': data.user?.email,
+          'uid': data.user?.uid,
         });
 
         print(
