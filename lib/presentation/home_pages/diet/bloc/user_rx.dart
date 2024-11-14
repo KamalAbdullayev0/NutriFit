@@ -11,14 +11,10 @@ class UserController {
   final proteinController = BehaviorSubject<num>.seeded(0);
 
   UserController() {
-    // Подписываемся на изменение состояния пользователя Firebase
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user != null) {
-        print('Пользователь авторизован: ${user.uid}');
-        fetchData(); // Загружаем данные, только если пользователь авторизован
+        fetchData();
       } else {
-        print('Пользователь не авторизован');
-        // Здесь можно обнулить данные, если это нужно
         resetData();
       }
     });
@@ -40,9 +36,7 @@ class UserController {
     proteinController.add(value);
   }
 
-  // Асинхронный метод для загрузки данных и обновления контроллеров
   Future<void> fetchData() async {
-    print('Запрос данных из Firebase начат');
     try {
       var result = await sl<GetUserDataUseCase>().call();
       result.fold(
@@ -75,7 +69,6 @@ class UserController {
     updateProtein(0);
   }
 
-  // Methods to increment values by a specific amount
   void incrementCarbs(num value) {
     final newCarbs = (carbsController.value + value).toDouble();
     updateCarbs(newCarbs);

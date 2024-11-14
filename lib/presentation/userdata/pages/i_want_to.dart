@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:nutri_fit/common/widgets/appbar/app_bar.dart';
 import 'package:nutri_fit/presentation/router/router.gr.dart';
 import 'package:nutri_fit/presentation/userdata/bloc/user_rxdart.dart';
 
@@ -20,9 +21,10 @@ class IWantToScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text('I want to...'),
-        backgroundColor: Colors.red,
+      appBar: BasicAppbar(
+        backgroundColor: Colors.white,
+        hideBack: false,
+        logoColor: Colors.black,
       ),
       body: StreamBuilder<String>(
         stream: userBloc.goal,

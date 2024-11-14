@@ -31,41 +31,55 @@ class DietPageWidget extends StatelessWidget {
         ),
       ],
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.green[300],
         appBar: const RootAppBar(
           imagePath: AppImages.ozun,
         ),
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              buildDatePicker(context),
-              CardWidget(),
-              const Padding(
-                padding: EdgeInsets.only(left: 16, top: 16),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Pick your diet",
-                    style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.green[300]!,
+                  Colors.white
+                ], // Green at the top, white at the bottom
+                begin: Alignment.topCenter, // Start gradient at the top
+                end: Alignment.bottomCenter, // End gradient at the bottom
+                stops: [0.4, 0.55], // Split the gradient at the midpoint
+              ),
+            ),
+            child: Column(
+              children: [
+                buildDatePicker(context),
+                CardWidget(),
+                const Padding(
+                  padding: EdgeInsets.only(left: 16, top: 16),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Pick your diet",
+                      style:
+                          TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
-              ),
-              const ChooseFood(),
-              const Padding(
-                padding: EdgeInsets.only(left: 16, top: 8, bottom: 4),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Today's meals",
-                    style: TextStyle(
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 3, 65, 115)),
+                const ChooseFood(),
+                const Padding(
+                  padding: EdgeInsets.only(left: 16, top: 8, bottom: 4),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Today's meals",
+                      style: TextStyle(
+                          fontSize: 23,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 3, 65, 115)),
+                    ),
                   ),
                 ),
-              ),
-              const MealsVertical(),
-            ],
+                const MealsVertical(),
+              ],
+            ),
           ),
         ),
       ),

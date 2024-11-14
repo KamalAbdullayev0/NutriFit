@@ -36,7 +36,6 @@ class MealsVertical extends StatelessWidget {
   }
 
   Widget _meals(List<MealEntity> meals) {
-    final userController = GetIt.I<UserController>();
     return SizedBox(
       height: 260,
       child: ListView.builder(
@@ -111,38 +110,7 @@ class MealsVertical extends StatelessWidget {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(10),
                       onTap: () {
-                        BlocBuilder<AddMealCubit, AddMealState>(
-                          bloc: GetIt.I.get<AddMealCubit>()
-                            ..addMeal(meals[index]),
-                          builder: (context, state) {
-                            print("KetoMealCubit State: $state");
-                            if (state is AddMealLoading) {
-                              return const Center(
-                                  child: CircularProgressIndicator());
-                            }
-                            if (state is AddMealSuccess) {
-                              print("Salam ${meals[index].name1}");
-                              context
-                                  .read<AddMealCubit>()
-                                  .addMeal(meals[index]);
-                            }
-
-                            if (state is AddMealFailure) {
-                              return const Center(
-                                child: Text(
-                                  'Please try again later',
-                                  style: TextStyle(
-                                      color: Colors.red, fontSize: 20),
-                                ),
-                              );
-                            }
-                            return Container();
-                          },
-                        );
-                        userController.incrementCarbs(meals[index].carbs);
-                        userController.incrementFat(meals[index].fat);
-                        userController.incrementCalories(meals[index].calories);
-                        userController.incrementProtein(meals[index].protein);
+                        _showAddDialog(context, meals, index);
                       },
                     ),
                   ),
@@ -152,6 +120,77 @@ class MealsVertical extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+
+  void _showAddDialog(BuildContext context, List<MealEntity> meals, int index) {
+    final userController = GetIt.I<UserController>();
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            'Do you want to add this meal ?',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 21,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          content: const Text('This will add the meal to your daily intake.',
+              style: TextStyle(color: Colors.grey, fontSize: 16)),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Отмена',
+                  style: TextStyle(color: Colors.grey, fontSize: 18)),
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.green[300],
+              ),
+              onPressed: () {
+                BlocBuilder<AddMealCubit, AddMealState>(
+                  bloc: GetIt.I.get<AddMealCubit>()..addMeal(meals[index]),
+                  builder: (context, state) {
+                    print("KetoMealCubit State: $state");
+                    if (state is AddMealLoading) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    if (state is AddMealSuccess) {
+                      print("Salam ${meals[index].name1}");
+                      context.read<AddMealCubit>().addMeal(meals[index]);
+                    }
+
+                    if (state is AddMealFailure) {
+                      return const Center(
+                        child: Text(
+                          'Please try again later',
+                          style: TextStyle(color: Colors.red, fontSize: 20),
+                        ),
+                      );
+                    }
+                    return Container();
+                  },
+                );
+                userController.incrementCarbs(meals[index].carbs);
+                userController.incrementFat(meals[index].fat);
+                userController.incrementCalories(meals[index].calories);
+                userController.incrementProtein(meals[index].protein);
+                Navigator.of(context).pop();
+              },
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 3),
+                child: const Text('Yes',
+                    style: TextStyle(color: Colors.white, fontSize: 18)),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 

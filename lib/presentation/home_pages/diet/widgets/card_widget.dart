@@ -53,7 +53,7 @@ class CardWidget extends StatelessWidget {
         height: 240,
         width: double.infinity,
         child: Card(
-          color: const Color.fromARGB(255, 6, 113, 213),
+          color: const Color.fromARGB(255, 15, 136, 248),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),
@@ -69,15 +69,24 @@ class CardWidget extends StatelessWidget {
                       builder: (context, snapshot) {
                         final protein = snapshot.data ?? 0;
                         print("CardWidget: Protein value - $protein");
-                        return MacroInfoWidget(
-                          width: 150,
-                          label: 'Protein',
-                          progress: protein / (user.necessaryProtein ?? 100),
-                          value:
-                              '$protein / ${(user.necessaryProtein ?? 100).toInt()} g',
-                          color: protein < (user.necessaryProtein ?? 100)
-                              ? Colors.red[400] ?? Colors.red
-                              : Colors.green[400] ?? Colors.green,
+
+                        return TweenAnimationBuilder<double>(
+                          tween: Tween<double>(
+                              begin: 0,
+                              end: protein / (user.necessaryProtein ?? 100)),
+                          duration: const Duration(milliseconds: 400),
+                          builder: (context, progress, child) {
+                            return MacroInfoWidget(
+                              width: 150,
+                              label: 'Protein',
+                              progress: progress,
+                              value:
+                                  '$protein / ${(user.necessaryProtein ?? 100).toInt()} g',
+                              color: protein < (user.necessaryProtein ?? 100)
+                                  ? Colors.red[400] ?? Colors.red
+                                  : Colors.green[400] ?? Colors.green,
+                            );
+                          },
                         );
                       },
                     ),
@@ -87,15 +96,24 @@ class CardWidget extends StatelessWidget {
                       builder: (context, snapshot) {
                         final carbs = snapshot.data ?? 0;
                         print("CardWidget: Carbs value - $carbs");
-                        return MacroInfoWidget(
-                          width: 150,
-                          label: 'Carbs',
-                          progress: carbs / (user.necessaryCarbs ?? 100),
-                          value:
-                              '$carbs / ${(user.necessaryCarbs ?? 100).toInt()} g',
-                          color: carbs < (user.necessaryCarbs ?? 100)
-                              ? Colors.orange[400] ?? Colors.orange
-                              : Colors.green[400] ?? Colors.green,
+
+                        return TweenAnimationBuilder<double>(
+                          tween: Tween<double>(
+                              begin: 0,
+                              end: carbs / (user.necessaryCarbs ?? 100)),
+                          duration: const Duration(milliseconds: 400),
+                          builder: (context, progress, child) {
+                            return MacroInfoWidget(
+                              width: 150,
+                              label: 'Carbs',
+                              progress: progress,
+                              value:
+                                  '$carbs / ${(user.necessaryCarbs ?? 100).toInt()} g',
+                              color: carbs < (user.necessaryCarbs ?? 100)
+                                  ? Colors.orange[400] ?? Colors.orange
+                                  : Colors.green[400] ?? Colors.green,
+                            );
+                          },
                         );
                       },
                     ),
@@ -105,15 +123,23 @@ class CardWidget extends StatelessWidget {
                       builder: (context, snapshot) {
                         final fat = snapshot.data ?? 0;
                         print("CardWidget: Fat value - $fat");
-                        return MacroInfoWidget(
-                          width: 150,
-                          label: 'Fat',
-                          progress: fat / (user.necessaryFat ?? 100),
-                          value:
-                              '$fat / ${(user.necessaryFat ?? 100).toInt()} g',
-                          color: fat < (user.necessaryFat ?? 100)
-                              ? Colors.yellow[600] ?? Colors.yellow
-                              : Colors.green[400] ?? Colors.green,
+
+                        return TweenAnimationBuilder<double>(
+                          tween: Tween<double>(
+                              begin: 0, end: fat / (user.necessaryFat ?? 100)),
+                          duration: const Duration(milliseconds: 400),
+                          builder: (context, progress, child) {
+                            return MacroInfoWidget(
+                              width: 150,
+                              label: 'Fat',
+                              progress: progress,
+                              value:
+                                  '$fat / ${(user.necessaryFat ?? 100).toInt()} g',
+                              color: fat < (user.necessaryFat ?? 100)
+                                  ? Colors.yellow[600] ?? Colors.yellow
+                                  : Colors.green[400] ?? Colors.green,
+                            );
+                          },
                         );
                       },
                     ),
@@ -132,30 +158,38 @@ class CardWidget extends StatelessWidget {
                       builder: (context, snapshot) {
                         final calories = snapshot.data ?? 0;
                         print("CardWidget: Calories value - $calories");
-                        return ProgressIndicatorWidget(
-                          label: 'Calories',
-                          progress:
-                              '$calories / ${user.necessaryCalories ?? 0}',
-                          value: calories.toDouble() /
-                              (user.necessaryCalories ?? 100).toDouble(),
-                          height: 140,
-                          strokeWidth: 10.0,
-                          backgroundColor: Colors.grey[300]!,
-                          progressColor: Colors.green,
-                          labelTextStyle: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                          progressTextStyle: const TextStyle(
-                            fontSize: 16,
-                            color: Colors.white54,
-                          ),
+
+                        return TweenAnimationBuilder<double>(
+                          tween: Tween<double>(
+                              begin: 0,
+                              end: calories / (user.necessaryCalories ?? 100)),
+                          duration: const Duration(milliseconds: 750),
+                          builder: (context, progress, child) {
+                            return ProgressIndicatorWidget(
+                              label: 'Calories',
+                              progress:
+                                  '$calories / ${user.necessaryCalories ?? 0}',
+                              value: progress,
+                              height: 140,
+                              strokeWidth: 10.0,
+                              backgroundColor: Colors.grey[300]!,
+                              progressColor: Colors.green,
+                              labelTextStyle: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                              progressTextStyle: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.white54,
+                              ),
+                            );
+                          },
                         );
                       },
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),
