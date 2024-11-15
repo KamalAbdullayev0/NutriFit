@@ -1,58 +1,69 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nutri_fit/core/configs/theme/app_colors.dart';
 
 Widget buildDatePicker(BuildContext context) {
   final now = DateTime.now();
-  final dateFormatter = DateFormat('MMM');
+  final dayFormatter =
+      DateFormat('E'); // Format for day of the week (e.g., "Mon")
 
-  return Container(
-    color: Colors.green[300],
-    padding: const EdgeInsets.only(top: 0),
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
     child: SizedBox(
-      height: 48,
+      height: 50,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 11,
+        itemCount: 7,
         itemBuilder: (context, index) {
           final date =
-              now.add(Duration(days: index)).subtract(const Duration(days: 5));
-          final isSelected = index == 5;
+              now.add(Duration(days: index)).subtract(const Duration(days: 2));
+          final isSelected = index == 2;
 
           return GestureDetector(
-            onTap: () {},
+            onTap: () {
+              // Handle the date selection
+            },
             child: Container(
-              width: 54,
-              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-              margin: const EdgeInsets.symmetric(horizontal: 4.0),
+              margin: const EdgeInsets.symmetric(horizontal: 4),
               decoration: BoxDecoration(
-                color: isSelected ? AppColors.green : AppColors.notification,
-                borderRadius: BorderRadius.circular(8.0),
-                border: Border.all(
-                  color: isSelected ? AppColors.darkgreen : AppColors.orange,
-                  width: isSelected ? 2.0 : 1.0,
-                ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    DateFormat('d').format(date),
-                    style: TextStyle(
-                      color: isSelected ? AppColors.background : Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                color: isSelected
+                    ? Color.fromARGB(255, 15, 136, 248)
+                    : Colors.grey[200],
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  if (isSelected)
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      spreadRadius: 2,
+                      blurRadius: 8,
+                      offset: const Offset(0, 3),
                     ),
-                  ),
-                  Text(
-                    dateFormatter.format(date),
-                    style: TextStyle(
-                      color: isSelected ? AppColors.background : Colors.black54,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
                 ],
+              ),
+              padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+              child: SizedBox(
+                height: 40,
+                width: 35,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      DateFormat('d').format(date),
+                      style: TextStyle(
+                        color: isSelected ? Colors.white : Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(
+                      dayFormatter.format(date),
+                      style: TextStyle(
+                        color: isSelected ? Colors.white70 : Colors.black54,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );

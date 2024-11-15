@@ -13,7 +13,7 @@ import 'package:nutri_fit/presentation/home_pages/diet/widgets/meals_widget.dart
 
 @RoutePage()
 class DietPageWidget extends StatelessWidget {
-  DietPageWidget({super.key});
+  const DietPageWidget({super.key});
 
   // int _selectedIndex = 0;
   @override
