@@ -29,122 +29,109 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.notification,
+      backgroundColor: Colors.white,
+      resizeToAvoidBottomInset: true,
       appBar: const BasicAppbar(
         imagePath: AppImages.yazi,
         hideBack: false,
       ),
-      body: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-            child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    height: 175,
-                    width: 175,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 245, 245, 237),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          spreadRadius: 1,
-                          blurRadius: 8,
-                          offset: const Offset(0, 3),
-                        ),
-                      ],
-                      border: Border.all(color: Colors.black.withOpacity(0.01)),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Image.asset(
-                        AppImages.logo,
-                        fit: BoxFit.contain,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  height: 175,
+                  width: 175,
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 245, 245, 237),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        spreadRadius: 1,
+                        blurRadius: 8,
+                        offset: const Offset(0, 3),
                       ),
+                    ],
+                    border: Border.all(color: Colors.black.withOpacity(0.01)),
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Image.asset(
+                      AppImages.logo,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
-                const Spacer(),
-                const Text(
-                  'Start your journey',
-                  style: TextStyle(
-                    fontSize: 36,
-                    fontWeight: FontWeight.w500,
-                  ),
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                'Start your journey',
+                style: TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.w500,
                 ),
-                const SizedBox(height: 16),
-                const Text(
-                  "Join NutriFit today and unlock your personalized path to fitness, nutrition, and well-being.",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                "Join NutriFit today and unlock your personalized path to fitness, nutrition, and well-being.",
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
                 ),
-                const Spacer(),
-                _fullNameField(context),
-                const SizedBox(height: 10),
-                _emailField(context),
-                const SizedBox(height: 10),
-                _passwordField(context),
-                const Spacer(),
-                BasicAppButton(
-                    backgroundColor: AppColors.green,
-                    height: 65,
-                    onPressed: () async {
-                      var result = await sl<SignupUseCase>().call(
-                        params: CreateUserReq(
-                          fullName: _fullName.text.toString(),
-                          email: _email.text.toString(),
-                          password: _password.text.toString(),
-                        ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
+              _fullNameField(context),
+              const SizedBox(height: 10),
+              _emailField(context),
+              const SizedBox(height: 10),
+              _passwordField(context),
+              const SizedBox(height: 20),
+              BasicAppButton(
+                backgroundColor: AppColors.green,
+                height: 65,
+                onPressed: () async {
+                  var result = await sl<SignupUseCase>().call(
+                    params: CreateUserReq(
+                      fullName: _fullName.text,
+                      email: _email.text,
+                      password: _password.text,
+                    ),
+                  );
+                  result.fold(
+                    (l) {
+                      var snackBar = SnackBar(
+                        content: Text(l),
                       );
-                      result.fold(
-                        (l) {
-                          var snackBar = SnackBar(
-                            content: Text(l),
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        },
-                        (r) {
-                          context.router.replaceAll([const IWantToRoute()]);
-                        },
-                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     },
-                    title: 'Register'),
-                const SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text('Or register with'),
-                    const Spacer(),
-                    SizedBox(
-                      width: 28,
-                      height: 28.5,
-                      child: SvgPicture.asset(
-                        AppVectors.google,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    SizedBox(
-                      height: 29.0,
-                      width: 36.0,
-                      child: SvgPicture.asset(
-                        AppVectors.apple,
-                      ),
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                const Spacer(),
-              ],
-            ),
-          )
-        ],
+                    (r) {
+                      context.router.replaceAll([const IWantToRoute()]);
+                    },
+                  );
+                },
+                title: 'Register',
+              ),
+              const SizedBox(height: 15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const Text('Or register with'),
+                  const Spacer(),
+                  SvgPicture.asset(AppVectors.google, width: 28, height: 28.5),
+                  const SizedBox(width: 10),
+                  SvgPicture.asset(AppVectors.apple, width: 36, height: 29),
+                ],
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -165,7 +152,6 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  // Поле ввода Email
   Widget _emailField(BuildContext context) {
     return TextField(
       controller: _email,
@@ -182,11 +168,10 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  // Поле ввода пароля с видимостью
   Widget _passwordField(BuildContext context) {
     return TextField(
       controller: _password,
-      obscureText: !_isPasswordVisible, // Меняем видимость текста
+      obscureText: !_isPasswordVisible,
       decoration: InputDecoration(
         prefixIcon: const Icon(
           Icons.lock,
@@ -195,15 +180,12 @@ class _RegisterPageState extends State<RegisterPage> {
         suffixIcon: IconButton(
           onPressed: () {
             setState(() {
-              _isPasswordVisible =
-                  !_isPasswordVisible; // Переключение видимости пароля
+              _isPasswordVisible = !_isPasswordVisible;
             });
           },
           icon: Icon(
             size: 23,
-            _isPasswordVisible
-                ? Icons.visibility
-                : Icons.visibility_off, // Иконка в зависимости от состояния
+            _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
           ),
         ),
         hintText: 'Enter Password',

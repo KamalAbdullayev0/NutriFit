@@ -145,7 +145,7 @@ class CardWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(width: 50),
+                const SizedBox(width: 45),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,

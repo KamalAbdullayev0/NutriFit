@@ -28,130 +28,135 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.notification,
+      backgroundColor: Colors.white,
       appBar: const BasicAppbar(
         imagePath: AppImages.yazi,
         hideBack: false,
       ),
       body: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
-            child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    height: 175,
-                    width: 175,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 245, 245, 237),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          spreadRadius: 1,
-                          blurRadius: 8,
-                          offset: const Offset(0, 3),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                      height: 175,
+                      width: 175,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 245, 245, 237),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            spreadRadius: 1,
+                            blurRadius: 8,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                        border:
+                            Border.all(color: Colors.black.withOpacity(0.01)),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Image.asset(
+                          AppImages.logo,
+                          fit: BoxFit.contain,
                         ),
-                      ],
-                      border: Border.all(color: Colors.black.withOpacity(0.01)),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Image.asset(
-                        AppImages.logo,
-                        fit: BoxFit.contain,
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 5),
-                const Text(
-                  'Welcome Back',
-                  style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                const Text(
-                  "Welcome back! Let's continue your journey to a healthier, fitter you with NutriFit.",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                Spacer(),
-                _emailField(),
-                const SizedBox(height: 15),
-                _passwordField(),
-                Spacer(),
-                BasicAppButton(
-                    backgroundColor: AppColors.green,
-                    height: 65,
-                    onPressed: () async {
-                      var result = await sl<SigninUseCase>().call(
-                        params: SigninUserReq(
-                          email: _email.text.toString(),
-                          password: _password.text.toString(),
-                        ),
-                      );
-                      result.fold(
-                        (l) {
-                          var snackBar = SnackBar(
-                            content: Text(l),
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        },
-                        (r) {
-                          context.router.replaceAll([const HomeRoute()]);
-                        },
-                      );
-                    },
-                    title: 'Sign In'),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text('Login with'),
-                    const Spacer(),
-                    SizedBox(
-                      width: 28,
-                      height: 28.5,
-                      child: SvgPicture.asset(
-                        AppVectors.google,
-                      ),
+                  const SizedBox(height: 5),
+                  const Text(
+                    'Welcome Back',
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.w500,
                     ),
-                    const SizedBox(width: 10),
-                    SizedBox(
-                      height: 29.0,
-                      width: 36.0,
-                      child: SvgPicture.asset(
-                        AppVectors.apple,
-                      ),
+                  ),
+                  const SizedBox(height: 5),
+                  const Text(
+                    "Welcome back! Let's continue your journey to a healthier, fitter you with NutriFit.",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
                     ),
-                  ],
-                ),
-                Spacer(),
-                Column(
-                  children: [
-                    const SizedBox(height: 10),
-                    const Text('Don\'t have an account?'),
-                    const SizedBox(height: 10),
-                    BasicAppButton(
-                      onPressed: () {
-                        context.router.push(const RegisterRoute());
-                      },
-                      title: 'Create Account',
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 20),
+                  _emailField(),
+                  const SizedBox(height: 15),
+                  _passwordField(),
+                  const SizedBox(height: 20),
+                  BasicAppButton(
+                      backgroundColor: AppColors.green,
                       height: 65,
-                      backgroundColor: const Color.fromARGB(255, 218, 215, 215),
-                    ),
-                  ],
-                ),
-              ],
+                      onPressed: () async {
+                        var result = await sl<SigninUseCase>().call(
+                          params: SigninUserReq(
+                            email: _email.text.toString(),
+                            password: _password.text.toString(),
+                          ),
+                        );
+                        result.fold(
+                          (l) {
+                            var snackBar = SnackBar(
+                              content: Text(l),
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          },
+                          (r) {
+                            context.router.replaceAll([const HomeRoute()]);
+                          },
+                        );
+                      },
+                      title: 'Sign In'),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text('Login with'),
+                      const Spacer(),
+                      SizedBox(
+                        width: 28,
+                        height: 28.5,
+                        child: SvgPicture.asset(
+                          AppVectors.google,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      SizedBox(
+                        height: 29.0,
+                        width: 36.0,
+                        child: SvgPicture.asset(
+                          AppVectors.apple,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Column(
+                    children: [
+                      const SizedBox(height: 10),
+                      const Text('Don\'t have an account?'),
+                      const SizedBox(height: 10),
+                      BasicAppButton(
+                        onPressed: () {
+                          context.router.push(const RegisterRoute());
+                        },
+                        title: 'Create Account',
+                        height: 65,
+                        backgroundColor:
+                            const Color.fromARGB(255, 218, 215, 215),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           )
         ],

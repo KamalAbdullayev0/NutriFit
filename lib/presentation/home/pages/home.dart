@@ -28,10 +28,10 @@ class HomePage extends StatelessWidget {
             child: GNav(
               onTabChange: (index) => _openPage(index, tabsRouter),
               selectedIndex: tabsRouter.activeIndex,
-              color: AppColors.green,
-              activeColor: Colors.red,
+              color: Colors.grey[500],
+              activeColor: Colors.green[400],
               tabBackgroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 8),
               duration: const Duration(milliseconds: 300),
               tabs: const [
                 GButton(
