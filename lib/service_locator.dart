@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:nutri_fit/data/repository/add_meal/add_meal.dart';
 import 'package:nutri_fit/data/repository/auth/auth_repository_imp.dart';

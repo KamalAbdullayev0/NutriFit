@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 Widget buildDatePicker(BuildContext context) {
   final now = DateTime.now();
   final dayFormatter =
-      DateFormat('E'); // Format for day of the week (e.g., "Mon")
+      DateFormat('E');
 
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),

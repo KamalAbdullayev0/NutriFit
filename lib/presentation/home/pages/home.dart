@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:nutri_fit/core/configs/theme/app_colors.dart';
 import 'package:nutri_fit/presentation/router/router.gr.dart';
 
 @RoutePage()
