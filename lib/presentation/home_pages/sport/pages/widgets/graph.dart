@@ -74,7 +74,7 @@ class GraphPainter extends CustomPainter {
       : _size = Tween<double>(begin: 0, end: 1).animate(
           CurvedAnimation(
             parent: animation,
-            curve: const Interval(0.0, 0.75,
+            curve: const Interval(0.0, 0.5,
                 curve: Curves.easeInOutCubicEmphasized),
           ),
         ),

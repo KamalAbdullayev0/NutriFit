@@ -6,7 +6,8 @@ import 'package:nutri_fit/presentation/home_pages/sport/bloc/sport_bloc.dart';
 import 'package:nutri_fit/presentation/home_pages/sport/pages/widgets/appbar.dart';
 import 'package:nutri_fit/presentation/home_pages/sport/pages/widgets/dates.dart';
 import 'package:nutri_fit/presentation/home_pages/sport/pages/widgets/graph.dart';
-import 'package:nutri_fit/presentation/home_pages/sport/pages/widgets/info.dart';
+import 'package:nutri_fit/presentation/home_pages/sport/pages/widgets/info.dart'
+    hide Stats;
 import 'package:nutri_fit/presentation/home_pages/sport/pages/widgets/stats.dart';
 import 'package:nutri_fit/presentation/home_pages/sport/pages/widgets/steps.dart';
 
@@ -24,6 +25,9 @@ class SportPageWidget extends StatelessWidget {
           Dates(),
           Steps(),
           Graph(),
+          SizedBox(
+            height: 70,
+          ),
           Info(),
           Stats(),
         ],
