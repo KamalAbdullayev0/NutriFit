@@ -13,15 +13,12 @@ class CardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("CardWidget: Building widget...");
     return BlocBuilder<UserCubit, UserState>(
       builder: (context, state) {
         if (state is UserSuccess) {
-          print("CardWidget: User data loaded successfully.");
           return _buildCard(state.user);
         }
         if (state is UserFailure) {
-          print("CardWidget: Error loading user data.");
           return const Center(
             child: Text(
               'Ошибка загрузки данных, попробуйте позже.',
@@ -30,14 +27,12 @@ class CardWidget extends StatelessWidget {
           );
         }
 
-        print("CardWidget: Initial or loading state.");
         return Container();
       },
     );
   }
 
   Widget _buildCard(UserInfoEntity user) {
-    print("CardWidget: Building card with user data...");
     final userController = GetIt.I<UserController>();
 
     return Container(
@@ -68,7 +63,6 @@ class CardWidget extends StatelessWidget {
                       stream: userController.proteinController,
                       builder: (context, snapshot) {
                         final protein = snapshot.data ?? 0;
-                        print("CardWidget: Protein value - $protein");
 
                         return TweenAnimationBuilder<double>(
                           tween: Tween<double>(
@@ -95,7 +89,6 @@ class CardWidget extends StatelessWidget {
                       stream: userController.carbsController,
                       builder: (context, snapshot) {
                         final carbs = snapshot.data ?? 0;
-                        print("CardWidget: Carbs value - $carbs");
 
                         return TweenAnimationBuilder<double>(
                           tween: Tween<double>(
@@ -122,7 +115,6 @@ class CardWidget extends StatelessWidget {
                       stream: userController.fatController,
                       builder: (context, snapshot) {
                         final fat = snapshot.data ?? 0;
-                        print("CardWidget: Fat value - $fat");
 
                         return TweenAnimationBuilder<double>(
                           tween: Tween<double>(
@@ -157,7 +149,6 @@ class CardWidget extends StatelessWidget {
                       stream: userController.caloriesController,
                       builder: (context, snapshot) {
                         final calories = snapshot.data ?? 0;
-                        print("CardWidget: Calories value - $calories");
 
                         return TweenAnimationBuilder<double>(
                           tween: Tween<double>(

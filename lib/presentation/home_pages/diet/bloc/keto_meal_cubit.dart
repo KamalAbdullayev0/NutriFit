@@ -11,11 +11,9 @@ class KetoMealCubit extends Cubit<KetoMealState> {
 
   Future<void> getKetoMeals({String? category}) async {
     final result = await sl<GetKetoMealsUseCase>().call(params: category);
-    print("GetKetoMeals result: $result");
     result.fold(
       (l) => emit(KetoMealFailure()),
       (data) => emit(KetoMealSuccess(ketoMeals: data)),
     );
   }
-  
 }

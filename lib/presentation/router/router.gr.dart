@@ -15,7 +15,7 @@ import 'package:nutri_fit/presentation/auth/pages/register.dart' as _i8;
 import 'package:nutri_fit/presentation/home/pages/home.dart' as _i3;
 import 'package:nutri_fit/presentation/home_pages/diet/pages/diet_page.dart'
     as _i1;
-import 'package:nutri_fit/presentation/home_pages/location/location_page.dart'
+import 'package:nutri_fit/presentation/home_pages/location/pages/location_page.dart'
     as _i5;
 import 'package:nutri_fit/presentation/home_pages/profile/pages/profil_page.dart'
     as _i7;
@@ -142,7 +142,7 @@ class LocationRouteWidget extends _i15.PageRouteInfo<void> {
   static _i15.PageInfo page = _i15.PageInfo(
     name,
     builder: (data) {
-      return _i5.LocationPageWidget();
+      return _i5.LocationPage();
     },
   );
 }

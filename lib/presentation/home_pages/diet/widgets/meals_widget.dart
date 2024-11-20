@@ -144,7 +144,7 @@ class MealsVertical extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Отмена',
+              child: const Text('cancel',
                   style: TextStyle(color: Colors.grey, fontSize: 18)),
             ),
             TextButton(
