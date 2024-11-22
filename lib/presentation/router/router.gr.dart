@@ -19,7 +19,7 @@ import 'package:nutri_fit/presentation/home_pages/location/pages/location_page.d
     as _i5;
 import 'package:nutri_fit/presentation/home_pages/profile/pages/profil_page.dart'
     as _i7;
-import 'package:nutri_fit/presentation/home_pages/sport/pages/sport_widget.dart'
+import 'package:nutri_fit/presentation/home_pages/sport/pages/sport_page.dart'
     as _i10;
 import 'package:nutri_fit/presentation/intro_sign/pages/get_started.dart'
     as _i2;

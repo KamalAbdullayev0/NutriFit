@@ -88,8 +88,7 @@ class LocationCubit extends Cubit<LocationState> {
       final LatLng origin = currentState.currentLocation!;
 
       try {
-        const String apiKey =
-            "AIzaSyBC6z-mLQSjaCZLcXgYx54fMUgZYBXE-AA"; // Replace with your API key
+        const String apiKey = "AIzaSyBC6z-mLQSjaCZLcXgYx54fMUgZYBXE-AA";
         final PolylinePoints polylinePoints = PolylinePoints();
 
         // Get route points

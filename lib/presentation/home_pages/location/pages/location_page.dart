@@ -87,8 +87,7 @@ class LocationPage extends StatelessWidget {
                                   mapToolbarEnabled: false,
                                   myLocationButtonEnabled: false,
                                   zoomControlsEnabled: false,
-                                  polylines: (state is LocationSuccess &&
-                                          state.routeCoordinates != null)
+                                  polylines: (state.routeCoordinates != null)
                                       ? {
                                           Polyline(
                                             polylineId: PolylineId("route"),
