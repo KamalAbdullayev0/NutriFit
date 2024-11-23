@@ -3,8 +3,7 @@ import 'package:intl/intl.dart';
 
 Widget buildDatePicker(BuildContext context) {
   final now = DateTime.now();
-  final dayFormatter =
-      DateFormat('E');
+  final dayFormatter = DateFormat('E');
 
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),

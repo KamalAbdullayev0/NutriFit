@@ -14,7 +14,7 @@ class SportPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 242, 240, 240),
       appBar: RootAppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

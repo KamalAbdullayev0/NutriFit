@@ -6,8 +6,9 @@ import 'package:nutri_fit/presentation/home_pages/diet/bloc/user_state.dart';
 
 class RootAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? imagePath;
+  final Color? color;
 
-  const RootAppBar({super.key, this.imagePath});
+  const RootAppBar({super.key, this.imagePath, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class RootAppBar extends StatelessWidget implements PreferredSizeWidget {
           }
 
           return AppBar(
-            backgroundColor: Colors.green[300],
+            backgroundColor: color ?? Colors.green[300],
             elevation: 0,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

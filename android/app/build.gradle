@@ -42,6 +42,9 @@ android {
         }
     }
 }
+dependencies {
+    implementation 'com.google.android.gms:play-services-fitness:21.1.0'
+}
 
 flutter {
     source = "../.."
