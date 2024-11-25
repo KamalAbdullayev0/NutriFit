@@ -10,6 +10,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i15;
 import 'package:flutter/material.dart' as _i16;
+import 'package:nutri_fit/domain/usecases/user/user.dart';
 import 'package:nutri_fit/presentation/auth/pages/login.dart' as _i6;
 import 'package:nutri_fit/presentation/auth/pages/register.dart' as _i8;
 import 'package:nutri_fit/presentation/home/pages/home.dart' as _i3;
@@ -180,7 +181,7 @@ class ProfilRouteWidget extends _i15.PageRouteInfo<void> {
   static _i15.PageInfo page = _i15.PageInfo(
     name,
     builder: (data) {
-      return const _i7.ProfilePageWidget();
+      return _i7.ProfilePageWidget(getUserDataUseCase: GetUserDataUseCase());
     },
   );
 }

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:nutri_fit/core/configs/assets/app_images.dart';
+import 'package:nutri_fit/domain/usecases/user/user.dart';
+import 'package:nutri_fit/presentation/home_pages/profile/bloc/profile_filtered_userdata_cubit.dart';
+import 'package:nutri_fit/presentation/home_pages/profile/bloc/profile_filtered_userdata_state.dart';
 
 @RoutePage()
 class ProfilePageWidget extends StatelessWidget {
-  const ProfilePageWidget({super.key});
+  final GetUserDataUseCase getUserDataUseCase;
+  const ProfilePageWidget({super.key, required this.getUserDataUseCase});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +46,7 @@ class ProfilePageWidget extends StatelessWidget {
           children: [
             _buildProfileCard(),
             const SizedBox(height: 16),
-            _buildPremiumButton(),
+            _buildPremiumButton(context),
             const SizedBox(height: 16),
             _buildOptionsList(),
             const SizedBox(height: 16),
@@ -117,7 +123,7 @@ class ProfilePageWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildPremiumButton() {
+  Widget _buildPremiumButton(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(vertical: 18),
@@ -126,14 +132,16 @@ class ProfilePageWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
       ),
-      onPressed: () {},
+      onPressed: () {
+        showAiInfo(context, getUserDataUseCase);
+      },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
           Icon(Icons.star, color: Colors.white),
           SizedBox(width: 8),
           Text(
-            'Go Premium',
+            'AI Personal Trainer',
             style: TextStyle(fontSize: 18, color: Colors.white),
           ),
         ],
@@ -261,6 +269,67 @@ class ProfilePageWidget extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void showAiInfo(BuildContext context, GetUserDataUseCase getUserDataUseCase) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) {
+        return FractionallySizedBox(
+          heightFactor: 0.8,
+          child: BlocProvider(
+            create: (_) =>
+                UserCubit(getUserDataUseCase)..loadAndSendUserDataToSwagger(),
+            child: BlocBuilder<UserCubit, UserStateProfile>(
+              builder: (context, state) {
+                if (state is UserLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is UserDataSentSuccessfully) {
+                  return SingleChildScrollView(
+                    padding: const EdgeInsets.all(16),
+                    child: MarkdownBody(
+                      data: state.response, // Ваш текст с бэкенда
+                      styleSheet: MarkdownStyleSheet(
+                        p: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                          height: 1.5,
+                          fontFamily: 'Serif',
+                        ),
+                        h1: const TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
+                        h2: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w600),
+                        h3: const TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  );
+                } else if (state is UserError) {
+                  return Center(
+                    child: Text(
+                      'Ошибка: ${state.errorMessage}',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.red,
+                      ),
+                    ),
+                  );
+                }
+
+                return const Center(
+                  child: Text('Loading...'),
+                );
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 }

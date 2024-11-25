@@ -119,11 +119,12 @@ class _WhatIsGenderScreenBody extends StatelessWidget {
                   }
 
                   void getCarbs() {
-                    userData.necessaryCarbs = ((userData.necessaryCalories! -
-                                (userData.necessaryProtein! * 4 +
-                                    userData.necessaryFat! * 9)) /
-                            4)
-                        .toInt();
+                    userData.necessaryCarbs = 35;
+                    // ((userData.necessaryCalories! -
+                    //             (userData.necessaryProtein! * 4 +
+                    //                 userData.necessaryFat! * 9)) /
+                    //         4)
+                    //     .toInt();
                   }
 
                   getCalories();
