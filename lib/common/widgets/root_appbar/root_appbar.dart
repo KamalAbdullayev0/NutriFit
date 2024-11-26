@@ -43,6 +43,7 @@ class RootAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ],
                 ),
                 CircleAvatar(
+                  radius: 24,
                   backgroundImage: imagePath != null
                       ? AssetImage(imagePath!)
                       : const AssetImage(AppImages.ozun),

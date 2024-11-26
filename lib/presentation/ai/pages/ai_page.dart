@@ -89,7 +89,6 @@ class VirtualAssistantScreen extends StatelessWidget {
       itemBuilder: (context, index) {
         final message = state.messages[index];
         final isBot = message['type'] == 'bot';
-
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
           child: Row(

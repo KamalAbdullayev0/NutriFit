@@ -35,7 +35,8 @@ class SportPageWidget extends StatelessWidget {
                   buildGoalCard(
                     context: context,
                     title: 'STEPS',
-                    currentValue: 4000,
+                    currentValue:
+                        1582, // Рандомное количество шагов, приблизительно 1187 м
                     goalValue: 8000,
                     emojiIcon: Icons.directions_walk,
                     onTap: () {
@@ -51,18 +52,21 @@ class SportPageWidget extends StatelessWidget {
               SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
+
                   buildInfoButton(
+                    
                     context: context,
                     icon: Icons.local_fire_department,
-                    label: 'Distance',
-                    value: '2000 м',
+                    label: 'Calories ',
+                    value: '63 call',
                   ),
                   buildInfoButton(
                     context: context,
                     icon: Icons.directions_walk,
-                    label: 'Steps',
-                    value: '4000 ',
+                    label: 'Distance',
+                    value: '1187 м',
                   ),
                 ],
               ),

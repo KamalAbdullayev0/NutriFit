@@ -28,6 +28,7 @@ class ProfilePageWidget extends StatelessWidget {
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.black,
+            fontSize: 24.0,
           ),
         ),
         centerTitle: false,
@@ -36,8 +37,8 @@ class ProfilePageWidget extends StatelessWidget {
             icon: SvgPicture.asset(
               AppVectors.ai,
               color: Colors.black,
-              width: 35.0,
-              height: 35.0,
+              width: 40.0,
+              height: 40.0,
             ),
             onPressed: () {
               Navigator.push(
@@ -52,6 +53,13 @@ class ProfilePageWidget extends StatelessWidget {
                 ),
               );
             },
+          ),
+          Text(
+            '  ',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
           ),
         ],
       ),
@@ -90,13 +98,14 @@ class ProfilePageWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const SizedBox(height: 12),
           const CircleAvatar(
-            radius: 50,
+            radius: 70,
             backgroundImage: AssetImage(AppImages.ozun),
           ),
           const SizedBox(height: 12),
           const Text(
-            'Welcome, Kamal!',
+            'Welcome, Aysu!',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -329,7 +338,7 @@ class ProfilePageWidget extends StatelessWidget {
                 } else if (state is UserError) {
                   return Center(
                     child: Text(
-                      'Ошибка: ${state.errorMessage}',
+                      'Error: ${state.errorMessage}',
                       style: const TextStyle(
                         fontSize: 18,
                         color: Colors.red,
