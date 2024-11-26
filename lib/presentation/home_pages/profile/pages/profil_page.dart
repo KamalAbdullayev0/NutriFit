@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:nutri_fit/core/configs/assets/app_images.dart';
+import 'package:nutri_fit/core/configs/assets/app_vectors.dart';
 import 'package:nutri_fit/domain/usecases/user/user.dart';
+import 'package:nutri_fit/presentation/ai/bloc/ai_page_cubit.dart';
+import 'package:nutri_fit/presentation/ai/pages/ai_page.dart';
 import 'package:nutri_fit/presentation/home_pages/profile/bloc/profile_filtered_userdata_cubit.dart';
 import 'package:nutri_fit/presentation/home_pages/profile/bloc/profile_filtered_userdata_state.dart';
 
@@ -19,7 +23,7 @@ class ProfilePageWidget extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text(
+        title: Text(
           'Profile',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -29,12 +33,24 @@ class ProfilePageWidget extends StatelessWidget {
         centerTitle: false,
         actions: [
           IconButton(
-            icon: const Icon(
-              Icons.settings,
+            icon: SvgPicture.asset(
+              AppVectors.ai,
               color: Colors.black,
+              width: 35.0,
+              height: 35.0,
             ),
             onPressed: () {
-              // Add settings logic here
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => BlocProvider(
+                    create: (context) => VirtualAssistantCubit(
+                        getUserDataUseCase: getUserDataUseCase),
+                    child: VirtualAssistantScreen(
+                        getUserDataUseCase: getUserDataUseCase),
+                  ),
+                ),
+              );
             },
           ),
         ],

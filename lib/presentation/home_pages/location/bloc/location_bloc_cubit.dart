@@ -85,16 +85,13 @@ class LocationCubit extends Cubit<LocationState> {
   Future<void> buildRoute(LatLng destination) async {
     if (state is LocationSuccess) {
       final currentState = state as LocationSuccess;
+      const String apiKey = "AIzaSyBC6z-mLQSjaCZLcXgYx54fMUgZYBXE-AA";
       final LatLng origin = currentState.currentLocation!;
-
       try {
-        const String apiKey = "AIzaSyBC6z-mLQSjaCZLcXgYx54fMUgZYBXE-AA";
         final PolylinePoints polylinePoints = PolylinePoints();
-
-        // Get route points
         final PolylineResult result =
             await polylinePoints.getRouteBetweenCoordinates(
-          googleApiKey: apiKey, // Named parameter for the API key
+          googleApiKey: apiKey,
           request: PolylineRequest(
             origin: PointLatLng(origin.latitude, origin.longitude),
             destination:

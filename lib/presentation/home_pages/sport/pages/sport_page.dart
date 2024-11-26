@@ -2,10 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutri_fit/common/widgets/root_appbar/root_appbar.dart';
+import 'package:nutri_fit/presentation/home_pages/sport/bloc/sport_bloc_cubit.dart';
+import 'package:nutri_fit/presentation/home_pages/sport/bloc/water_cubit.dart';
+import 'package:nutri_fit/presentation/home_pages/sport/widgets/Water.dart';
 import 'package:nutri_fit/presentation/home_pages/sport/widgets/build_goal.dart';
 import 'package:nutri_fit/presentation/home_pages/sport/widgets/exercises_vertical.dart';
 import 'package:nutri_fit/presentation/home_pages/sport/widgets/get_info_cal_dis_widget.dart';
-import 'package:nutri_fit/presentation/home_pages/sport/bloc/sport_bloc_cubit.dart';
 
 @RoutePage()
 class SportPageWidget extends StatelessWidget {
@@ -31,6 +33,7 @@ class SportPageWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   buildGoalCard(
+                    context: context,
                     title: 'STEPS',
                     currentValue: 4000,
                     goalValue: 8000,
@@ -39,14 +42,9 @@ class SportPageWidget extends StatelessWidget {
                       print("Steps card tapped!");
                     },
                   ),
-                  buildGoalCard(
-                    title: 'WATER',
-                    currentValue: 3, // Пример текущего значения (стаканов)
-                    goalValue: 8, // Цель (в стаканах)
-                    emojiIcon: Icons.water_drop, // Эмоджи: капля воды
-                    onTap: () {
-                      print("Water card tapped!");
-                    },
+                  BlocProvider(
+                    create: (context) => WaterCounterCubit(),
+                    child: WaterGoalCard(),
                   ),
                 ],
               ),

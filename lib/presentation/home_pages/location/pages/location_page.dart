@@ -30,7 +30,7 @@ class LocationPage extends StatelessWidget {
             if (state is LocationInitial) {
               return const Center(
                 child: CircularProgressIndicator(),
-              ); // Initial loading state
+              );
             }
             if (state is LocationSuccess) {
               final LatLng initialPosition =
@@ -46,111 +46,120 @@ class LocationPage extends StatelessWidget {
                   onTap: () => context.read<LocationCubit>().selectGym(gym),
                 ));
               }
+
               return Stack(
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.03,
-                      ),
-                      Stack(
-                        children: [
-                          Align(
-                            alignment: Alignment.center,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(45),
+                  SingleChildScrollView(
+                    padding: EdgeInsets.all(16.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.03,
+                        ),
+                        Stack(
+                          children: [
+                            Align(
+                              alignment: Alignment.center,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(45),
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.1),
+                                      blurRadius: 10,
+                                      offset: Offset(0, 5),
+                                    ),
+                                  ],
                                 ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.1),
-                                    blurRadius: 10,
-                                    offset: Offset(0, 5),
+                                width: MediaQuery.of(context).size.width * 0.92,
+                                height: MediaQuery.of(context).size.height *
+                                    0.65, // Adjusted height
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: GoogleMap(
+                                    initialCameraPosition: CameraPosition(
+                                      target: initialPosition,
+                                      zoom: 14,
+                                    ),
+                                    markers: markers,
+                                    myLocationEnabled: true,
+                                    compassEnabled: true,
+                                    mapToolbarEnabled: false,
+                                    myLocationButtonEnabled: false,
+                                    zoomControlsEnabled: false,
+                                    polylines: (state.routeCoordinates != null)
+                                        ? {
+                                            Polyline(
+                                              polylineId: PolylineId("route"),
+                                              color: Colors.blue,
+                                              width: 5,
+                                              points: state.routeCoordinates!,
+                                            ),
+                                          }
+                                        : {},
+                                    onMapCreated:
+                                        (GoogleMapController controller) {},
                                   ),
-                                ],
-                              ),
-                              width: MediaQuery.of(context).size.width * 0.92,
-                              height: MediaQuery.of(context).size.height * 0.66,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(30),
-                                child: GoogleMap(
-                                  initialCameraPosition: CameraPosition(
-                                    target: initialPosition,
-                                    zoom: 14,
-                                  ),
-                                  markers: markers,
-                                  myLocationEnabled: true,
-                                  compassEnabled: true,
-                                  mapToolbarEnabled: false,
-                                  myLocationButtonEnabled: false,
-                                  zoomControlsEnabled: false,
-                                  polylines: (state.routeCoordinates != null)
-                                      ? {
-                                          Polyline(
-                                            polylineId: PolylineId("route"),
-                                            color: Colors.blue,
-                                            width: 5,
-                                            points: state.routeCoordinates!,
-                                          ),
-                                        }
-                                      : {},
-                                  onMapCreated:
-                                      (GoogleMapController controller) {},
                                 ),
                               ),
                             ),
-                          ),
-                          if (selectedGym != null)
-                            GymInfoWidget(
-                              selectedGym: selectedGym,
-                            ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.03,
-                      ),
-                    ],
+                            if (selectedGym != null)
+                              GymInfoWidget(
+                                selectedGym: selectedGym,
+                              ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.03,
+                        ),
+                      ],
+                    ),
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 10.0, vertical: 20.0),
+                          horizontal: 10.0,
+                          vertical:
+                              15.0), // Reduced padding for smaller screens
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
-                              Colors.green[300], // Яркий зелёный цвет
+                              Colors.green[300], // Bright green color
                           padding: const EdgeInsets.symmetric(
-                            vertical: 20.0, // Вертикальный отступ
-                            horizontal: 30.0, // Горизонтальный отступ
+                            vertical: 15.0, // Adjusted vertical padding
+                            horizontal: 30.0, // Horizontal padding
                           ),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                                15.0), // Закруглённые углы
+                            borderRadius:
+                                BorderRadius.circular(12.0), // Rounded corners
                           ),
-                          elevation: 8, // Высота кнопки
-                          shadowColor: Colors.green.shade200, // Цвет тени
+                          elevation: 8, // Button elevation
+                          shadowColor: Colors.green.shade200, // Shadow color
                         ),
                         onPressed: () {
                           _showCategoryPicker(
-                              context); // Открыть модальное окно
+                              context); // Open the category picker
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: const [
                             Text(
-                              "Choose a category", // Выбор категории
+                              "Choose a category", // Category selection
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 18.0,
+                                fontSize:
+                                    16.0, // Adjusted font size for smaller screens
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             Icon(
-                              size: 30.0,
+                              size:
+                                  25.0, // Adjusted icon size for smaller screens
                               Icons.arrow_drop_down_rounded,
                               color: Colors.white,
                             ),
@@ -187,7 +196,6 @@ class LocationPage extends StatelessWidget {
       {"name": "Economy", "emoji": "💰"}
     ];
 
-    // Получаем текущее состояние LocationCubit
     final state = BlocProvider.of<LocationCubit>(context).state;
 
     int gymCount = 0;

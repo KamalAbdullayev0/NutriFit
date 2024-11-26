@@ -25,6 +25,7 @@ class HomePage extends StatelessWidget {
             margin:
                 const EdgeInsets.only(bottom: 25, left: 25, right: 25, top: 10),
             child: GNav(
+              textSize: 22,
               onTabChange: (index) => _openPage(index, tabsRouter),
               selectedIndex: tabsRouter.activeIndex,
               color: Colors.grey[500],
@@ -36,18 +37,22 @@ class HomePage extends StatelessWidget {
                 GButton(
                   icon: Icons.home,
                   text: ' Diet',
+                  iconSize: 28,
                 ),
                 GButton(
-                  icon: Icons.favorite,
+                  icon: Icons.fitness_center_sharp,
+                  iconSize: 28,
                   text: ' Sport',
                 ),
                 GButton(
                   icon: Icons.location_on,
                   text: ' Location',
+                  iconSize: 28,
                 ),
                 GButton(
                   icon: Icons.person,
                   text: ' Profil',
+                  iconSize: 28,
                 ),
               ],
             ),

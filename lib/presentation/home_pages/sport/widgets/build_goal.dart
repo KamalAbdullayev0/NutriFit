@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 Widget buildGoalCard({
+  required BuildContext context,
   required String title,
   required int currentValue,
   required int goalValue,
@@ -9,6 +10,7 @@ Widget buildGoalCard({
   required Function() onTap,
 }) {
   double progress = (currentValue / goalValue).clamp(0.0, 1.0);
+
   return SizedBox(
     child: GestureDetector(
       onTap: onTap,
@@ -37,7 +39,7 @@ Widget buildGoalCard({
               ),
               SizedBox(height: 10),
               CircularPercentIndicator(
-                radius: 80.0,
+                radius: MediaQuery.of(context).size.width / 5.4,
                 lineWidth: 10.0,
                 percent: progress,
                 center: Column(
